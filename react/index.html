@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" href="./src/favicon.ico">
+  <title>React App</title>
+  <style>
+    body {
+      margin: 0;
+    }
+    /* Style the element from the outside */
+    /*
+  fancy-tabs {
+    margin-bottom: 32px;
+    --background-color: black;
+  }*/
+  </style>
+  <script>
+    const supportsShadowDOMV1 = Boolean(HTMLElement.prototype.attachShadow);
+    const supportsCustomElementsV1 = ('customElement' in window);
+
+    function loadScript(src) {
+      return new Promise(function(resolve, reject) {
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+
+     const loadCustomElementsPolyfill = supportsCustomElementsV1 ? Promise.resolve() : loadScript('https://cdn.rawgit.com/webcomponents/custom-elements/master/custom-elements.min.js')
+       .then(e => console.info('CustomElements v1 polyfills loaded!') );
+     const loadShadowDOMPolyfill = supportsShadowDOMV1 ? Promise.resolve() : loadCustomElementsPolyfill
+       .then(e => loadScript('https://cdn.rawgit.com/webcomponents/shadydom/master/shadydom.min.js'))
+       .then(e => loadScript('https://cdn.rawgit.com/webcomponents/shadycss/master/shadycss.min.js'))
+       .then(e => console.log('shadow DOM v1 polyfills loaded!'));
+
+     window.polyfilsLoaded = loadShadowDOMPolyfill;
+//     window.polyfilsLoaded = Promise.resolve();
+
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` in this folder.
+      To create a production bundle, use `npm run build`.
+    -->
+</body>
+
+</html>
