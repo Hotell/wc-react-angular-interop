@@ -1,4 +1,4 @@
-import {importTemplate} from '../wc-utils';
+import { importTemplate } from '../wc-utils';
 
 export class FlagIcon extends HTMLElement {
 
@@ -6,61 +6,85 @@ export class FlagIcon extends HTMLElement {
   _allCountries = [];
 
   _renderer = null;
+  _eventListeners = [];
+
+  static EVENTS = {
+    iconClicked: 'icon-clicked'
+  };
 
   constructor() {
     super();
 
     // Create shadow DOM for the component.
-    const template = importTemplate(require('./flag-icon.html'));
-    const shadowRoot = this.attachShadow({mode: 'open'});
-    shadowRoot.appendChild(template);
+    const template = importTemplate( require( './flag-icon.html' ) );
+    const shadowRoot = this.attachShadow( { mode: 'open' } );
+    shadowRoot.appendChild( template );
 
-    this._renderer = this.shadowRoot.querySelector('#renderer');
+    this._renderer = this.shadowRoot.querySelector( '#renderer' );
+    this._eventListeners.push(
+      this.shadowRoot.querySelector( '#clicker' ).addEventListener( 'click', ( e ) => {
+        this.onClickHandler();
+      } )
+    );
+
   }
 
-  static get observedAttributes() { 
+  onClickHandler() {
+    this.shadowRoot.dispatchEvent( new CustomEvent( FlagIcon.EVENTS.iconClicked, {
+      bubbles: true,
+      composed: true,
+      detail: { message: 'ICON CLICKED!' }
+    } ) );
+  }
+
+  static get observedAttributes() {
     return [
       'country',
       'all-countries'
-    ]; 
+    ];
   }
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    console.group('attributeChangedCallback');
-    console.log(name)
+  attributeChangedCallback( name, oldValue, newValue ) {
+    console.group( 'attributeChangedCallback' );
+    console.log( name )
     // name will always be "country" due to observedAttributes
-    if(name==='country'){
+    if ( name === 'country' ) {
       this._countryCode = newValue;
     }
-    if(name==='all-countries'){
+    if ( name === 'all-countries' ) {
       this._allCountries = newValue;
     }
     console.groupEnd();
     this._updateRendering();
   }
-  connectedCallback() {    
-    this._updateRendering();    
-  }
-  disconnectedCallback(){
-    this._renderer = null;
-    console.log('bye!');
+
+  connectedCallback() {
+    this._updateRendering();
   }
 
-  set allCountries(v){
-    console.log('allCountries setter', v)
-    this._allCountries = v;
-    this.setAttribute("all-countries", v);
+  disconnectedCallback() {
+    this._renderer = null;
+    this._eventListeners.forEach( unmountEvent => this.shadowRoot.removeEventListener( 'click', unmountEvent ) );
+    console.log( 'bye!' );
   }
-  get allCountries(){
+
+  set allCountries( v ) {
+    console.log( 'allCountries setter', v )
+    this._allCountries = v;
+    this.setAttribute( "all-countries", v );
+  }
+
+  get allCountries() {
     return this._allCountries;
   }
 
   get country() {
     return this._countryCode;
   }
-  set country(v) {
-    console.log('country setter', v);
-    this.setAttribute("country", v);
+
+  set country( v ) {
+    console.log( 'country setter', v );
+    this.setAttribute( "country", v );
   }
 
   _updateRendering() {
@@ -68,11 +92,11 @@ export class FlagIcon extends HTMLElement {
     // check this.ownerDocument.defaultView to see if we've been
     // inserted into a document with a browsing context, and avoid
     // doing any work if not.
-    console.log('called!')
+    console.log( 'called!' )
     this._renderer.innerHTML = `<p>
       hello from: <b>${this.country}</b>
       countries available: ${this.allCountries}
     </p>`;
-    
+
   }
 }
