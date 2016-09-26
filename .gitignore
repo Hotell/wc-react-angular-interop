@@ -8,6 +8,8 @@ coverage
 
 # production
 build
+dist
+out-tsc
 
 # misc
 .DS_Store
