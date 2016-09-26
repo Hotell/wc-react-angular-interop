@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "module": "es6",
+    "target": "es6",
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "outDir": "out-tsc",
+    "lib": ["es2015", "dom"],
+    "mapRoot": "./",
+    "moduleResolution": "node"
+  }
+}

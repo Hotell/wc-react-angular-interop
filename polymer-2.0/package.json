@@ -1,0 +1,34 @@
+{
+  "name": "polymer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "rimraf dist",
+    "build": "webpack --env.prod -p",
+    "prebuild:dev": "rimraf dist",
+    "build:dev": "webpack --env.dev",
+    "dev": "webpack-dev-server --env.dev --hot",
+    "start": "npm run dev"
+  },
+  "keywords": [],
+  "author": "Martin Hochel <hochelmartin@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "awesome-typescript-loader": "2.2.4",
+    "html-webpack-plugin": "2.22.0",
+    "rimraf": "2.5.4",
+    "typescript": "2.0.3",
+    "webpack": "2.1.0-beta.25",
+    "webpack-config-utils": "2.1.0",
+    "webpack-dev-server": "2.1.0-beta.6"
+  },
+  "dependencies": {
+    "@polymer/polymer": "github:polymer/polymer#2.0-preview",
+    "@webcomponents/custom-elements": "github:webcomponents/custom-elements",
+    "@webcomponents/shadycss": "github:webcomponents/shadycss",
+    "@webcomponents/shadydom": "github:webcomponents/shadydom",
+    "webcomponents.js": "github:webcomponents/webcomponentsjs#v1"
+  }
+}

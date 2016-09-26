@@ -1,0 +1,56 @@
+<link rel="import" href="../../../node_modules/@polymer/polymer/polymer-element.html">
+<dom-module id="my-app">
+  <template>
+    <style>
+      :host{
+        color: tomato;
+      }
+    </style>
+    <h1>Hello world</h1>
+    <input type="text" id="user" value="[[userName]]" on-input="onUserChange">
+    <my-button foo="[[userName]]">Click Me!</my-button>
+  </template>
+  <script>
+      class MyApp extends Polymer.Element {
+        static get is() { return 'my-app' }
+
+        static get config() {
+          return {
+            properties: {
+              userName: {
+                type: String,
+                value: 'boba fett'
+              }
+            }
+          }
+        }
+
+        constructor() {
+          super();
+          console.log( 'hello!' );
+        }
+
+        onUserChange(e){
+          const {value} = e.target;
+          console.log( value );
+          this.userName = value;
+        }
+
+        connectedCallback() {
+          super.connectedCallback();
+//          this.$.user.addEventListener( 'change', ( e ) => console.log( e.target ) )
+        }
+
+        disconnectedCallback() {
+          super.disconnectedCallback();
+
+        }
+
+        attributeChangedCallback() {
+
+        }
+      }
+
+      window.customElements.define( MyApp.is, MyApp );
+  </script>
+</dom-module>
