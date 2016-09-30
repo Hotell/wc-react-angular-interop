@@ -1,20 +1,105 @@
 import { Component, prop } from 'skatejs';
 import React from '../jsx';
 
-export class Button extends Component {
+interface ButtonProps {
+  raised: boolean,
+  ripple: boolean,
+  colored: boolean,
+  primary: boolean,
+  accent: boolean,
+  fab: boolean,
+  fabMini: boolean,
+  disabled: boolean,
+}
 
-  static props = {
-    raised: prop.boolean({
-      default: false
-    })
+export class Button extends Component implements ButtonProps {
+
+  raised: boolean;
+  ripple: boolean;
+  colored: boolean;
+  primary: boolean;
+  accent: boolean;
+  fab: boolean;
+  fabMini: boolean;
+  disabled: boolean;
+  private button: HTMLButtonElement;
+
+  static get is() { return 'paper-button'}
+  static get props() {
+    return {
+      raised: prop.boolean( {
+        default: false
+      } ),
+      ripple: prop.boolean( {
+        default: true
+      } ),
+      colored: prop.boolean(),
+      primary: prop.boolean(),
+      accent: prop.boolean(),
+      fab: prop.boolean(),
+      fabMini: prop.boolean(),
+      disabled: prop.boolean( { attribute: true } )
+    }
   };
-  static render( elem ) {
 
-    console.log( elem );
+  static attached( elem: Button ){
+    componentHandler.upgradeElement(elem.button);
+  }
+  static detached( elem: Button ){
+    componentHandler.downgradeElements(elem.button as any || [null]);
+  }
+  static render( elem: Button ) {
+
+    componentHandler.downgradeElements(elem.button as any || [null]);
+
     return ([
       <style>
-        {`
-        .mdl-button {
+        {buttonStyle}
+      </style>,
+      <button
+        ref={!elem.button ? el=>elem.button=el : ()=>{}}
+        className={elem.createClassNames(elem)}
+        disabled={elem.disabled}
+      >
+        <slot>Button</slot>
+      </button>
+    ])
+  }
+
+  static rendered( elem ) {
+    componentHandler.upgradeElement(elem.button || null);
+  }
+
+  createClassNames(elem){
+    const baseClassName = 'mdl-button mdl-js-button';
+
+    const raisedClassName = elem.raised ? 'mdl-button--raised' : '';
+    const rippleClassName = elem.ripple ? 'mdl-js-ripple-effect' : '';
+    const coloredClassName = elem.colored ? 'mdl-button--colored' : '';
+    const primaryClassName = elem.primary ? 'mdl-button--primary' : '';
+    const accentClassName = elem.accent ? 'mdl-button--accent' : '';
+    const fabClassName = elem.fab ? 'mdl-button--fab' : '';
+    const fabMiniClassName = elem.fabMini ? 'mdl-button--mini-fab' : '';
+
+
+    return [
+      baseClassName,
+      rippleClassName,
+      raisedClassName,
+      coloredClassName,
+      primaryClassName,
+      accentClassName,
+      fabClassName,
+      fabMiniClassName
+    ]
+      .filter( className => Boolean( className.length ) )
+      .join( ' ' );
+
+  }
+}
+
+const buttonStyle = `
+  .mdl-button {
   background: 0 0;
   border: none;
   border-radius: 2px;
@@ -105,6 +190,113 @@ input.mdl-button[type="submit"] {
   background: rgb(255,255,255)
 }
 
+.mdl-button--fab {
+  border-radius: 50%;
+  font-size: 24px;
+  height: 56px;
+  margin: auto;
+  min-width: 56px;
+  width: 56px;
+  padding: 0;
+  overflow: hidden;
+  background: rgba(158,158,158,.2);
+  box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);
+  position: relative;
+  line-height: normal
+}
+
+.mdl-button--fab .material-icons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-12px,-12px);
+  transform: translate(-12px,-12px);
+  line-height: 24px;
+  width: 24px
+}
+
+.mdl-button--fab.mdl-button--mini-fab {
+  height: 40px;
+  min-width: 40px;
+  width: 40px
+}
+
+.mdl-button--fab .mdl-button__ripple-container {
+  border-radius: 50%;
+  -webkit-mask-image: -webkit-radial-gradient(circle,#fff,#000)
+}
+
+.mdl-button--fab:active {
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+  background-color: rgba(158,158,158,.4)
+}
+
+.mdl-button--fab:focus:not(:active) {
+  box-shadow: 0 0 8px rgba(0,0,0,.18),0 8px 16px rgba(0,0,0,.36);
+  background-color: rgba(158,158,158,.4)
+}
+
+.mdl-button--fab.mdl-button--colored {
+  background: rgb(255,64,129);
+  color: rgb(255,255,255)
+}
+
+.mdl-button--fab.mdl-button--colored:hover {
+  background-color: rgb(255,64,129)
+}
+
+.mdl-button--fab.mdl-button--colored:focus:not(:active) {
+  background-color: rgb(255,64,129)
+}
+
+.mdl-button--fab.mdl-button--colored:active {
+  background-color: rgb(255,64,129)
+}
+
+.mdl-button--fab.mdl-button--colored .mdl-ripple {
+  background: rgb(255,255,255)
+}
+
+.mdl-button--icon {
+  border-radius: 50%;
+  font-size: 24px;
+  height: 32px;
+  margin-left: 0;
+  margin-right: 0;
+  min-width: 32px;
+  width: 32px;
+  padding: 0;
+  overflow: hidden;
+  color: inherit;
+  line-height: normal
+}
+
+.mdl-button--icon .material-icons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-12px,-12px);
+  transform: translate(-12px,-12px);
+  line-height: 24px;
+  width: 24px
+}
+
+.mdl-button--icon.mdl-button--mini-icon {
+  height: 24px;
+  min-width: 24px;
+  width: 24px
+}
+
+.mdl-button--icon.mdl-button--mini-icon .material-icons {
+  top: 0;
+  left: 0
+}
+
+.mdl-button--icon .mdl-button__ripple-container {
+  border-radius: 50%;
+  -webkit-mask-image: -webkit-radial-gradient(circle,#fff,#000)
+}
+
 .mdl-button__ripple-container {
   display: block;
   height: 100%;
@@ -172,42 +364,25 @@ input.mdl-button[type="submit"] {
 }
 
 .mdl-ripple {
-  background: #000;
-  border-radius: 50%;
-  height: 50px;
-  left: 0;
-  opacity: 0;
-  pointer-events: none;
-  position: absolute;
-  top: 0;
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
-  width: 50px;
-  overflow: hidden
+background: #000;
+border-radius: 50%;
+height: 50px;
+left: 0;
+opacity: 0;
+pointer-events: none;
+position: absolute;
+top: 0;
+-webkit-transform: translate(-50%,-50%);
+transform: translate(-50%,-50%);
+width: 50px;
+overflow: hidden
 }
 
 .mdl-ripple.is-animating {
-  transition: transform .3s cubic-bezier(0,0,.2,1),width .3s cubic-bezier(0,0,.2,1),height .3s cubic-bezier(0,0,.2,1),opacity .6s cubic-bezier(0,0,.2,1);
-  transition: transform .3s cubic-bezier(0,0,.2,1),width .3s cubic-bezier(0,0,.2,1),height .3s cubic-bezier(0,0,.2,1),opacity .6s cubic-bezier(0,0,.2,1),-webkit-transform .3s cubic-bezier(0,0,.2,1)
+transition: transform .3s cubic-bezier(0,0,.2,1),width .3s cubic-bezier(0,0,.2,1),height .3s cubic-bezier(0,0,.2,1),opacity .6s cubic-bezier(0,0,.2,1);
+transition: transform .3s cubic-bezier(0,0,.2,1),width .3s cubic-bezier(0,0,.2,1),height .3s cubic-bezier(0,0,.2,1),opacity .6s cubic-bezier(0,0,.2,1),-webkit-transform .3s cubic-bezier(0,0,.2,1)
 }
 
 .mdl-ripple.is-visible {
-  opacity: .3
-}
-
-
-        `}
-      </style>,
-      <button
-        ref={(elem)=>componentHandler.upgradeElement(elem)}
-        className={elem.createClassNames(elem)}
-      >
-        <slot>Button</slot>
-      </button>
-    ])
-  }
-
-  createClassNames(elem){
-    return `mdl-button mdl-js-button ${elem.raised && 'mdl-button--raised'} mdl-js-ripple-effect mdl-button--accent`
-  }
-}
+opacity: .3
+}`;

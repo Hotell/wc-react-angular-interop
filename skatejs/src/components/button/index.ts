@@ -3,4 +3,4 @@ import { Button } from './Button';
 
 export { Button } from './Button';
 
-define( 'paper-button', Button );
+define( Button.is, Button );

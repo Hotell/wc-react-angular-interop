@@ -3,4 +3,4 @@ import { Card } from './Card';
 
 export { Card } from './Card';
 
-define( 'paper-card', Card );
+define( Card.is, Card );
