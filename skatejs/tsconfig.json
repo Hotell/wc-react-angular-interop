@@ -5,7 +5,11 @@
     "noImplicitAny": false,
     "sourceMap": true,
     "outDir": "out-tsc",
-    "lib": ["es2015", "dom"],
+    "lib": [
+      "es2015",
+      "es2016.array.include",
+      "dom"
+    ],
     "mapRoot": "./",
     "moduleResolution": "node",
     "jsx": "react",
