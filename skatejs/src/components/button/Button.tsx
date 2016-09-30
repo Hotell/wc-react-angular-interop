@@ -1,7 +1,7 @@
-import { Component, prop } from 'skatejs';
+import { Component, prop, props } from 'skatejs';
 import React from '../jsx';
 
-interface ButtonProps {
+export interface ButtonProps {
   raised: boolean,
   ripple: boolean,
   colored: boolean,
@@ -10,6 +10,7 @@ interface ButtonProps {
   fab: boolean,
   fabMini: boolean,
   disabled: boolean,
+  className?: string,
 }
 
 export class Button extends Component implements ButtonProps {
@@ -27,18 +28,19 @@ export class Button extends Component implements ButtonProps {
   static get is() { return 'paper-button'}
   static get props() {
     return {
-      raised: prop.boolean( {
-        default: false
-      } ),
-      ripple: prop.boolean( {
-        default: true
-      } ),
+      raised: prop.boolean( { default: false } ),
+      ripple: prop.boolean( { default: true } ),
       colored: prop.boolean(),
       primary: prop.boolean(),
       accent: prop.boolean(),
       fab: prop.boolean(),
       fabMini: prop.boolean(),
-      disabled: prop.boolean( { attribute: true } )
+      disabled: prop.boolean( { attribute: true } ),
+      className: prop.string({
+        get(elem, data){
+          return data.internalValue || elem.classList.toString()
+        }
+      }),
     }
   };
 
@@ -90,7 +92,8 @@ export class Button extends Component implements ButtonProps {
       primaryClassName,
       accentClassName,
       fabClassName,
-      fabMiniClassName
+      fabMiniClassName,
+      elem.className
     ]
       .filter( className => Boolean( className.length ) )
       .join( ' ' );
