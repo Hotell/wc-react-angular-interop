@@ -26,6 +26,7 @@ export class Button extends Component implements ButtonProps {
   private button: HTMLButtonElement;
 
   static get is() { return 'paper-button'}
+
   static get props() {
     return {
       raised: prop.boolean( { default: false } ),
@@ -36,52 +37,83 @@ export class Button extends Component implements ButtonProps {
       fab: prop.boolean(),
       fabMini: prop.boolean(),
       disabled: prop.boolean( { attribute: true } ),
-      className: prop.string({
-        get(elem, data){
+      className: prop.string( {
+        get( elem, data ){
           return data.internalValue || elem.classList.toString()
         }
-      }),
+      } ),
     }
   };
 
-  static attached( elem: Button ){
-    componentHandler.upgradeElement(elem.button);
-  }
-  static detached( elem: Button ){
-    componentHandler.downgradeElements(elem.button as any || [null]);
-  }
-  static render( elem: Button ) {
+  static attached( elem: Button ) {}
 
-    componentHandler.downgradeElements(elem.button as any || [null]);
+  static detached( elem: Button ) {
+    elem.unsetButton();
+  }
+
+  static render( elem: Button ) {
 
     return ([
       <style>
         {buttonStyle}
       </style>,
       <button
-        ref={!elem.button ? el=>elem.button=el : ()=>{}}
+        ref={elem.setButton.bind(elem)}
         className={elem.createClassNames(elem)}
         disabled={elem.disabled}
       >
-        <slot>Button</slot>
-      </button>
+        <slot/>
+      </button>,
     ])
   }
 
-  static rendered( elem ) {
-    componentHandler.upgradeElement(elem.button || null);
+  private setButton( ref: HTMLButtonElement ) {
+    if(ref === this.button){
+      this.downgradeMDL( ref );
+    }
+    this.button = ref;
+    this.upgradeMDL( ref );
   }
 
-  createClassNames(elem){
+  private unsetButton() {
+    this.downgradeMDL( this.button );
+    this.button = null;
+  }
+
+  private upgradeMDL( ref ) {
+    if ( !ref ) { return }
+    componentHandler.upgradeElement( ref );
+  }
+
+  private downgradeMDL( ref ) {
+    if ( !ref ) { return }
+    componentHandler.downgradeElements( ref );
+  }
+
+  createClassNames( elem ) {
     const baseClassName = 'mdl-button mdl-js-button';
 
-    const raisedClassName = elem.raised ? 'mdl-button--raised' : '';
-    const rippleClassName = elem.ripple ? 'mdl-js-ripple-effect' : '';
-    const coloredClassName = elem.colored ? 'mdl-button--colored' : '';
-    const primaryClassName = elem.primary ? 'mdl-button--primary' : '';
-    const accentClassName = elem.accent ? 'mdl-button--accent' : '';
-    const fabClassName = elem.fab ? 'mdl-button--fab' : '';
-    const fabMiniClassName = elem.fabMini ? 'mdl-button--mini-fab' : '';
+    const raisedClassName = elem.raised
+      ? 'mdl-button--raised'
+      : '';
+    const rippleClassName = elem.ripple
+      ? 'mdl-js-ripple-effect'
+      : '';
+    const coloredClassName = elem.colored
+      ? 'mdl-button--colored'
+      : '';
+    const primaryClassName = elem.primary
+      ? 'mdl-button--primary'
+      : '';
+    const accentClassName = elem.accent
+      ? 'mdl-button--accent'
+      : '';
+    const fabClassName = elem.fab
+      ? 'mdl-button--fab'
+      : '';
+    const fabMiniClassName = elem.fabMini
+      ? 'mdl-button--mini-fab'
+      : '';
 
 
     return [
