@@ -50,8 +50,8 @@ export class App extends Component {
           <paper-button colored>Hello</paper-button>
           <paper-button primary raised>Hello</paper-button>
           <paper-button accent>Hello</paper-button>
-          <paper-button fab>Fab</paper-button>
-          <paper-button fab fabMini>+</paper-button>
+          <paper-fab>Fab</paper-fab>
+          <paper-fab mini>+</paper-fab>
           <paper-icon-button icon="mood" raised colored></paper-icon-button>
           <a href="(URL or function)">Related Action</a>
         </div>

@@ -1,72 +1,42 @@
-import { Component, prop, props } from 'skatejs';
+import { prop, props } from 'skatejs';
 import React from '../jsx';
-import { ButtonProps } from './Button';
 import { omit } from '../utils';
+import { BaseButton, BaseButtonProps, iconButtonStyle } from './BaseButton';
+import { Button } from './';
 
-interface IconButtonProps extends ButtonProps {
+interface IconButtonProps extends BaseButtonProps {
   icon: string
 }
-export class IconButton extends Component implements IconButtonProps {
+
+export class IconButton extends BaseButton implements IconButtonProps {
   icon: string;
-  raised: boolean;
-  ripple: boolean;
-  colored: boolean;
-  primary: boolean;
-  accent: boolean;
-  fab: boolean;
-  fabMini: boolean;
-  disabled: boolean;
-  href: string;
 
   static get is() { return 'paper-icon-button'}
 
   static get props() {
-    return {
-      icon: prop.string(),
-      raised: prop.boolean( { default: false } ),
-      ripple: prop.boolean( { default: true } ),
-      colored: prop.boolean(),
-      primary: prop.boolean(),
-      accent: prop.boolean(),
-      fab: prop.boolean(),
-      fabMini: prop.boolean(),
-      disabled: prop.boolean( { attribute: true } ),
-      className: prop.string({
-        get(elem, data){
-          return data.internalValue || elem.classList.toString()
-        }
-      }),
-    }
+
+    return Object.assign(
+      {},
+      // call super
+      BaseButton.props,
+      { icon: prop.string() }
+    )
   }
 
   static render( elem: IconButton ) {
     const { className, icon } = elem;
-    const otherProps = omit( props( elem ), [ 'icon', 'className' ] );
-    const classes = `mdl-button--icon ${className}`;
+    const otherProps = omit( props( elem ), [ 'iconBtn', 'icon', 'className' ] );
+    const buttonClasses = `${className}`;
 
     return ([
       <style>{iconButtonStyle}</style>,
-      <paper-button className={classes} {...otherProps}>
+      <Button
+        iconBtn
+        className={buttonClasses}
+        {...otherProps}
+      >
         <i className="material-icons">{icon}</i>
-      </paper-button>
+      </Button>
     ])
   }
 }
-
-const iconButtonStyle = `
-  .material-icons {
-    font-family: 'Material Icons';
-    font-weight: 400;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    word-wrap: normal;
-    -moz-font-feature-settings: 'liga';
-    font-feature-settings: 'liga';
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased
-  }
-`;
