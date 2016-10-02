@@ -53,6 +53,7 @@ export class App extends Component {
           <paper-fab>Fab</paper-fab>
           <paper-fab mini>+</paper-fab>
           <paper-icon-button icon="mood" raised colored></paper-icon-button>
+          <iron-icon icon="mood"></iron-icon>
           <a href="(URL or function)">Related Action</a>
         </div>
       </paper-card>

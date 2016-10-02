@@ -1,8 +1,10 @@
 import { prop, props } from 'skatejs';
 import React from '../jsx';
+
 import { omit } from '../utils';
 import { BaseButton, BaseButtonProps, iconButtonStyle } from './BaseButton';
 import { Button } from './';
+import { Icon } from '../icon';
 
 interface IconButtonProps extends BaseButtonProps {
   icon: string
@@ -29,13 +31,13 @@ export class IconButton extends BaseButton implements IconButtonProps {
     const buttonClasses = `${className}`;
 
     return ([
-      <style>{iconButtonStyle}</style>,
+      <style></style>,
       <Button
         iconBtn
         className={buttonClasses}
         {...otherProps}
       >
-        <i className="material-icons">{icon}</i>
+        <Icon icon={icon}/>
       </Button>
     ])
   }
