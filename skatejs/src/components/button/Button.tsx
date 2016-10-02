@@ -1,4 +1,4 @@
-import { Component, prop, props } from 'skatejs';
+import { Component, prop } from 'skatejs';
 import React from '../jsx';
 
 export interface ButtonProps {
@@ -10,8 +10,27 @@ export interface ButtonProps {
   fab: boolean,
   fabMini: boolean,
   disabled: boolean,
+  href: string,
   className?: string,
 }
+
+const ButtonRenderer = (props, children) => {
+  const {href} = props;
+  return href
+    ? (<a {...props}>{children}</a>)
+    : (<button {...props}>{children}</button>);
+};
+// other option how to render ( programatically )
+// React.createElement(
+//   (href ? 'a' : 'button'),
+//   {
+//     ref:elem.setButton.bind(elem),
+//     className:buttonClasses,
+//     href,
+//     disabled
+//   },
+//   React.createElement('slot',{})
+// )
 
 export class Button extends Component implements ButtonProps {
 
@@ -23,7 +42,8 @@ export class Button extends Component implements ButtonProps {
   fab: boolean;
   fabMini: boolean;
   disabled: boolean;
-  private button: HTMLButtonElement;
+  href: string;
+  private button?: HTMLButtonElement;
 
   static get is() { return 'paper-button'}
 
@@ -36,6 +56,7 @@ export class Button extends Component implements ButtonProps {
       accent: prop.boolean(),
       fab: prop.boolean(),
       fabMini: prop.boolean(),
+      href: prop.string(),
       disabled: prop.boolean( { attribute: true } ),
       className: prop.string( {
         get( elem, data ){
@@ -53,17 +74,21 @@ export class Button extends Component implements ButtonProps {
 
   static render( elem: Button ) {
 
+    const { href, disabled } = elem;
+    const buttonClasses = elem.createClassNames(elem);
+
     return ([
       <style>
         {buttonStyle}
       </style>,
-      <button
+      <ButtonRenderer
         ref={elem.setButton.bind(elem)}
-        className={elem.createClassNames(elem)}
-        disabled={elem.disabled}
+        className={buttonClasses}
+        href={href}
+        disabled={disabled}
       >
         <slot/>
-      </button>,
+      </ButtonRenderer>
     ])
   }
 
@@ -90,7 +115,7 @@ export class Button extends Component implements ButtonProps {
     componentHandler.downgradeElements( ref );
   }
 
-  createClassNames( elem ) {
+  private createClassNames( elem ) {
     const baseClassName = 'mdl-button mdl-js-button';
 
     const raisedClassName = elem.raised

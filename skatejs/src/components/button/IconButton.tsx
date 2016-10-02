@@ -16,6 +16,7 @@ export class IconButton extends Component implements IconButtonProps {
   fab: boolean;
   fabMini: boolean;
   disabled: boolean;
+  href: string;
 
   static get is() { return 'paper-icon-button'}
 

@@ -46,7 +46,7 @@ export class App extends Component {
           <paper-button raised={elem.isRaised}>
             Click me!
           </paper-button>
-          <paper-button raised>Hello</paper-button>
+          <paper-button href="http://google.com" raised>go Google it!</paper-button>
           <paper-button colored>Hello</paper-button>
           <paper-button primary raised>Hello</paper-button>
           <paper-button accent>Hello</paper-button>

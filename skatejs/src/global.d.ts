@@ -32,7 +32,7 @@ declare namespace SkateJs {
 
   type DefineFn = ( name: string, definition: CustomElementDefinition )=>ComponentInstance
   type EmitFn = ( elem: any, eventName: string, eventOptions?: CustomEvent )=>boolean
-  type H = ( tag: string | Component, attrs?: {[name: string]: string}, ...children: any[] )=>void
+  type H = ( tag: string | Component, attrs?: {[name: string]: any}, ...children: any[] )=>void
   type LinkFn = ( elem: any, target: string )=>void
   type Prop = {
     array( definition?: PropsOptions ): any[]
