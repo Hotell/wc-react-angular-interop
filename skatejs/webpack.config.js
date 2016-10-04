@@ -10,7 +10,7 @@ module.exports = (env) => {
   return {
     context: resolve( __dirname, 'src' ),
     entry: {
-      app: './main.tsx'
+      app: './main.ts'
     },
     output: {
       filename: '[name].[hash].js',
@@ -31,8 +31,14 @@ module.exports = (env) => {
 
     module: {
       loaders: [
-        { test: /\.tsx?$/, loaders: [ 'awesome-typescript-loader' ], exclude: /node_modules/ }
+        { test: /\.tsx?$/, loaders: [ 'awesome-typescript-loader' ], exclude: /node_modules/ },
+        {
+          test: /\.scss$/,
+          // loaders: ['style', 'css', 'sass'],
+          loaders: [ 'raw-loader', 'sass-loader' ]
+        }
       ],
+
     },
 
     plugins: [

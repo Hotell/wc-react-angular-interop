@@ -17,10 +17,16 @@
   "license": "MIT",
   "devDependencies": {
     "@types/material-design-lite": "1.1.14",
+    "@types/node": "6.0.41",
     "awesome-typescript-loader": "2.2.4",
     "bower": "1.7.9",
+    "css-loader": "0.25.0",
     "html-webpack-plugin": "2.22.0",
+    "node-sass": "3.10.1",
+    "raw-loader": "0.5.1",
     "rimraf": "2.5.4",
+    "sass-loader": "4.0.2",
+    "style-loader": "0.13.1",
     "typescript": "2.0.3",
     "webpack": "2.1.0-beta.25",
     "webpack-config-utils": "2.1.0",
@@ -29,8 +35,9 @@
   "dependencies": {
     "@webcomponents/custom-elements": "github:webcomponents/custom-elements",
     "@webcomponents/shadycss": "github:webcomponents/shadycss",
-    "@webcomponents/shadydom": "github:webcomponents/shadydom",
-    "skatejs": "1.5.1",
-    "skatejs-web-components": "1.1.4"
+    "@webcomponents/shadydom": "github:npm webcomponents/shadydom",
+    "material-design-lite": "1.2.1",
+    "skatejs": "1.5.2",
+    "skatejs-web-components": "1.2.0"
   }
 }

@@ -2,6 +2,8 @@ import React from '../jsx';
 import { Component, prop } from 'skatejs';
 
 
+export const iconStyle = require('./icon.scss');
+
 export class Icon extends Component {
 
   icon: string;
@@ -25,21 +27,3 @@ export class Icon extends Component {
   }
 
 }
-
-export const iconStyle = `
-  .material-icons {
-    font-family: 'Material Icons';
-    font-weight: 400;
-    font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
-    display: inline-block;
-    word-wrap: normal;
-    -moz-font-feature-settings: 'liga';
-    font-feature-settings: 'liga';
-    -webkit-font-feature-settings: 'liga';
-    -webkit-font-smoothing: antialiased
-  }
-`;

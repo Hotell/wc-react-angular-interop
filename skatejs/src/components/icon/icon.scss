@@ -1,0 +1,5 @@
+@import "../core/index";
+
+.material-icons {
+  @include typo-icon;
+}

@@ -19,11 +19,8 @@ export class Button extends BaseButton {
   static get is() { return 'paper-button'}
 
   static render( elem: Button ) {
-
     const { href, disabled } = elem;
     const buttonClasses = elem.createClassNames(elem);
-
-    console.log( buttonClasses );
 
     return ([
       <style>

@@ -2,7 +2,7 @@ import { prop, props } from 'skatejs';
 import React from '../jsx';
 
 import { omit } from '../utils';
-import { BaseButton, BaseButtonProps, iconButtonStyle } from './BaseButton';
+import { BaseButton, BaseButtonProps } from './BaseButton';
 import { Button } from './';
 import { Icon } from '../icon';
 
