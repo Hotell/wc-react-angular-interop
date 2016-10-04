@@ -1,6 +1,5 @@
-import { Component, define, prop, props } from 'skatejs';
+import { Component, define, prop, props, h } from 'skatejs';
 import React from './components/jsx';
-
 
 
 type BtnConfig = {
@@ -18,8 +17,9 @@ export class App extends Component {
   private isRaised: boolean;
 
   static get is() { return 'my-app' }
+
   static props = {
-    isRaised: prop.boolean({default:false}),
+    isRaised: prop.boolean( { default: false } ),
     buttonConfig: {
       default: {
         raised: false,
@@ -32,38 +32,45 @@ export class App extends Component {
     }
   };
 
-  static render(elem: App) {
+  static render( elem: App ) {
     return (
       <section>
-      <paper-card hello="World">
-        <div slot="title">title Text Goes Here</div>
-        <div slot="supporting-text">
-          <p>Hello from Card!</p>
-          <x-counter count="1"></x-counter>
+        <paper-card hello="World">
+          <div slot="title">title Text Goes Here</div>
+          <div slot="supporting-text">
+            <p>Hello from Card!</p>
+            <x-counter count="1"></x-counter>
+          </div>
+          <div slot="card-actions">
+            <paper-button onClick={elem.toggleRaised.bind(elem)}>Toggle Raised</paper-button>
+            <paper-button raised={elem.isRaised}>
+              Click me!
+            </paper-button>
+            <paper-button href="http://google.com" raised>go Google it!</paper-button>
+            <paper-button colored>Hello</paper-button>
+            <paper-button primary raised>Hello</paper-button>
+            <paper-button accent>Hello</paper-button>
+            <paper-fab>Fab</paper-fab>
+            <paper-fab mini>+</paper-fab>
+            <paper-icon-button icon="mood" raised colored></paper-icon-button>
+            <iron-icon icon="mood"></iron-icon>
+            <a href="(URL or function)">Related Action</a>
+          </div>
+        </paper-card>
+
+        <div style="text-align:center;padding:1rem">
+          <paper-tooltip label="Follow">
+            <iron-icon icon="add"></iron-icon>
+          </paper-tooltip>
+
         </div>
-        <div slot="card-actions">
-          <paper-button onClick={elem.toggleRaised.bind(elem)}>Toggle Raised</paper-button>
-          <paper-button raised={elem.isRaised}>
-            Click me!
-          </paper-button>
-          <paper-button href="http://google.com" raised>go Google it!</paper-button>
-          <paper-button colored>Hello</paper-button>
-          <paper-button primary raised>Hello</paper-button>
-          <paper-button accent>Hello</paper-button>
-          <paper-fab>Fab</paper-fab>
-          <paper-fab mini>+</paper-fab>
-          <paper-icon-button icon="mood" raised colored></paper-icon-button>
-          <iron-icon icon="mood"></iron-icon>
-          <a href="(URL or function)">Related Action</a>
-        </div>
-      </paper-card>
 
         <div>
           <h4>button configurator</h4>
           <form>
             <label>
               <input type="checkbox" onChange={()=>elem.toggleButtonType('raised')}/>
-               Raised
+              Raised
             </label>
             <label>
               <input type="checkbox" onChange={()=>elem.toggleButtonType('colored')}/>
@@ -105,7 +112,8 @@ export class App extends Component {
       buttonConfig: Object.assign( {}, this.buttonConfig, { [type]: !value } )
     } );
   }
-  toggleRaised(){
+
+  toggleRaised() {
     this.isRaised = !this.isRaised;
   }
 }

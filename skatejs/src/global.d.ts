@@ -207,6 +207,7 @@ interface PropObjectType {
 // extend Window
 declare interface Window {
   customElements: CustomElementRegistry,
+  MaterialTooltip: MaterialDesignLite.MaterialTooltip
 }
 
 declare class CustomElementRegistry {
@@ -231,4 +232,11 @@ declare interface HTMLElement {
 
 declare interface HTMLElementStatic {
   observedAttributes: string[]|void
+}
+
+
+// MDL
+
+declare module MaterialDesignLite {
+  class MaterialTooltip {}
 }
