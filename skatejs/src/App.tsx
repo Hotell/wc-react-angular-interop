@@ -1,6 +1,8 @@
-import { Component, define, prop, props, h } from 'skatejs';
-import React from './components/jsx';
+import 'material-design-lite/material.js';
+import { Component, define, prop, props } from 'skatejs';
 
+import './components';
+import React from './components/jsx';
 
 type BtnConfig = {
   raised: boolean,
@@ -29,11 +31,14 @@ export class App extends Component {
         fab: false,
         miniFab: false
       }
-    }
+    },
   };
 
+  static attached(elem: App){}
+
   static render( elem: App ) {
-    return (
+    return ([
+      <style></style>,
       <section>
         <paper-card hello="World">
           <div slot="title">title Text Goes Here</div>
@@ -65,7 +70,7 @@ export class App extends Component {
 
         </div>
 
-        <div>
+       <div>
           <h4>button configurator</h4>
           <form>
             <label>
@@ -101,7 +106,7 @@ export class App extends Component {
         </div>
 
       </section>
-    )
+    ])
   }
 
 

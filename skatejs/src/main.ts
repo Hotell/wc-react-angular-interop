@@ -1,6 +1,6 @@
 import './polyfills';
 import './vendor';
 
-import './components'
-import './App';
+// import './App';
+import './AppMDL';
 

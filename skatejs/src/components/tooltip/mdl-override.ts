@@ -1,4 +1,6 @@
 export function overrideMDLTooltip( mdlTooltipCtor ) {
+  if ( typeof mdlTooltipCtor !== 'function' ) { return }
+
   const proto = mdlTooltipCtor.prototype;
   const origInitFn = proto.init;
   const newInitFn = function () {
