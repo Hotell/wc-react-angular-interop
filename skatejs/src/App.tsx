@@ -13,6 +13,43 @@ type BtnConfig = {
   fabMini: boolean
 };
 
+
+const ButtonConfigurator = ( { elem } ) => {
+  return (
+    <div>
+      <h4>button configurator</h4>
+      <form>
+        <label>
+          <input type="checkbox" onChange={()=>elem.toggleButtonType('raised')}/>
+          Raised
+        </label>
+        <label>
+          <input type="checkbox" onChange={()=>elem.toggleButtonType('colored')}/>
+          Colored
+        </label>
+        <label>
+          <input type="checkbox" onChange={()=>elem.toggleButtonType('primary')}/>
+          Primary
+        </label>
+        <label>
+          <input type="checkbox" onChange={()=>elem.toggleButtonType('accent')}/>
+          Accent
+        </label>
+        <label>
+          <input type="checkbox" onChange={()=>elem.toggleButtonType('fab')}/>
+          Fab
+        </label>
+        <label>
+          <input type="checkbox" onChange={()=>elem.toggleButtonType('fabMini')}/>
+          Mini Fab(needs to has fab active)
+        </label>
+        <label>
+          <input type="checkbox" onChange={()=>elem.toggleButtonType('disabled')}/>
+          Disabled
+        </label>
+      </form>
+      <paper-button {...elem.buttonConfig}>Configure me!</paper-button>
+    </div>)};
 export class App extends Component {
 
   private buttonConfig: BtnConfig;
@@ -37,6 +74,7 @@ export class App extends Component {
   static attached(elem: App){}
 
   static render( elem: App ) {
+
     return ([
       <style></style>,
       <section>
@@ -47,7 +85,7 @@ export class App extends Component {
             <x-counter count="1"></x-counter>
           </div>
           <div slot="card-actions">
-            <paper-button onClick={elem.toggleRaised.bind(elem)}>Toggle Raised</paper-button>
+            <paper-button onClick={elem.toggleRaised.bind( elem )}>Toggle Raised</paper-button>
             <paper-button raised={elem.isRaised}>
               Click me!
             </paper-button>
@@ -70,40 +108,7 @@ export class App extends Component {
 
         </div>
 
-       <div>
-          <h4>button configurator</h4>
-          <form>
-            <label>
-              <input type="checkbox" onChange={()=>elem.toggleButtonType('raised')}/>
-              Raised
-            </label>
-            <label>
-              <input type="checkbox" onChange={()=>elem.toggleButtonType('colored')}/>
-              Colored
-            </label>
-            <label>
-              <input type="checkbox" onChange={()=>elem.toggleButtonType('primary')}/>
-              Primary
-            </label>
-            <label>
-              <input type="checkbox" onChange={()=>elem.toggleButtonType('accent')}/>
-              Accent
-            </label>
-            <label>
-              <input type="checkbox" onChange={()=>elem.toggleButtonType('fab')}/>
-              Fab
-            </label>
-            <label>
-              <input type="checkbox" onChange={()=>elem.toggleButtonType('fabMini')}/>
-              Mini Fab(needs to has fab active)
-            </label>
-            <label>
-              <input type="checkbox" onChange={()=>elem.toggleButtonType('disabled')}/>
-              Disabled
-            </label>
-          </form>
-          <paper-button {...elem.buttonConfig}>Configure me!</paper-button>
-        </div>
+        <ButtonConfigurator elem={elem}/>
 
       </section>
     ])
