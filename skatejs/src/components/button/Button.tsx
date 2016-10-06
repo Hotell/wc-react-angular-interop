@@ -1,4 +1,4 @@
-import React from '../jsx';
+import React from '../../shared/jsx';
 import { BaseButton, buttonStyle, ButtonRenderer } from './BaseButton';
 
 export interface ButtonProps {

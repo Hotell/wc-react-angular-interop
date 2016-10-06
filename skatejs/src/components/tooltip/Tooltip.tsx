@@ -1,8 +1,8 @@
 import { prop, props, ready } from 'skatejs';
 
-import React from '../jsx';
+import React from '../../shared/jsx';
 import { MDLComponent } from '../core/MDLComponent';
-import { omit } from '../utils';
+import { omit } from '../../shared/utils';
 
 export const tooltipStyle = require( './tooltip.scss' );
 

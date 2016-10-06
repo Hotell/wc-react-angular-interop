@@ -1,4 +1,4 @@
-import React from '../jsx';
+import React from '../../shared/jsx';
 import { Component, prop } from 'skatejs';
 
 

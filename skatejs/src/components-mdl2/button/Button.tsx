@@ -1,5 +1,5 @@
 import { Component,prop,define } from 'skatejs';
-import React from '../../components/jsx';
+import React from '../../shared/jsx';
 import MDLRipple, { MDLRippleFoundation } from 'mdl-ripple';
 
 const styles = require('./button.scss');

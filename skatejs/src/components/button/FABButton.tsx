@@ -1,8 +1,8 @@
 import { prop, props } from 'skatejs';
-import React from '../jsx';
+import React from '../../shared/jsx';
 import { BaseButton } from './BaseButton';
 import { Button } from './Button';
-import { omit } from '../utils';
+import { omit } from '../../shared/utils';
 
 export class FABButton extends BaseButton {
 

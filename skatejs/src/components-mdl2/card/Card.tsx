@@ -1,5 +1,5 @@
 import { Component, prop, define } from 'skatejs';
-import React from '../../components/jsx';
+import React from '../../shared/jsx';
 
 const styles = require('./card.scss');
 

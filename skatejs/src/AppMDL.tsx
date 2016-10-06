@@ -1,5 +1,5 @@
 import { Component, define, symbols } from 'skatejs';
-import React from './components/jsx';
+import React from './shared/jsx';
 import { MDLCard } from './components-mdl2/card/Card';
 import { MDLCheckbox } from './components-mdl2/checkbox/Checkbox';
 import { MDLButton } from './components-mdl2/button/Button';

@@ -1,7 +1,7 @@
 import { prop, props } from 'skatejs';
-import React from '../jsx';
+import React from '../../shared/jsx';
 
-import { omit } from '../utils';
+import { omit } from '../../shared/utils';
 import { BaseButton, BaseButtonProps } from './BaseButton';
 import { Button } from './';
 import { Icon } from '../icon';

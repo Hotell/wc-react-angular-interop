@@ -1,5 +1,5 @@
 import * as skate from 'skatejs';
-import React from '../jsx';
+import React from '../../shared/jsx';
 
 const sym = Symbol();
 

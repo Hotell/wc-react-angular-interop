@@ -1,5 +1,5 @@
 import {Component,prop} from 'skatejs';
-import React from '../jsx';
+import React from '../../shared/jsx';
 
 
 export interface BaseButtonProps {

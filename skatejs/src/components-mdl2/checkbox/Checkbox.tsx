@@ -1,4 +1,4 @@
-import React from '../../components/jsx';
+import React from '../../shared/jsx';
 import { Component, define, prop, props, emit } from 'skatejs';
 import MDLCheckboxComponent, {MDLCheckboxFoundation} from 'mdl-checkbox';
 

@@ -2,7 +2,7 @@ import 'material-design-lite/material.js';
 import { Component, define, prop, props } from 'skatejs';
 
 import './components';
-import React from './components/jsx';
+import React from './shared/jsx';
 
 type BtnConfig = {
   raised: boolean,
