@@ -1,11 +1,11 @@
-const { resolve } = require('path');
+const { resolve } = require( 'path' );
 
-const webpack = require('webpack');
+const webpack = require( 'webpack' );
 
 // plugins
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 
-module.exports = (env) => {
+module.exports = ( env ) => {
 
   return {
     context: resolve( __dirname, 'src' ),
@@ -14,7 +14,7 @@ module.exports = (env) => {
     },
     output: {
       filename: '[name].[hash].js',
-      path: resolve('dist'),
+      path: resolve( 'dist' ),
       // Include comments with information about the modules.
       pathinfo: true,
     },
@@ -35,7 +35,15 @@ module.exports = (env) => {
         {
           test: /\.scss$/,
           // loaders: ['style', 'css', 'sass'],
-          loaders: [ 'raw-loader', 'sass-loader' ]
+          loaders: [
+            { loader: 'raw-loader' },
+            {
+              loader: 'sass-loader',
+              query: {
+                includePaths: [ resolve( __dirname, './node_modules/' ) ]
+              }
+            }
+          ]
         }
       ],
 
@@ -43,9 +51,9 @@ module.exports = (env) => {
 
     plugins: [
 
-      new HtmlWebpackPlugin({
-        template: resolve('index.html')
-      })
+      new HtmlWebpackPlugin( {
+        template: resolve( 'index.html' )
+      } )
 
     ]
 

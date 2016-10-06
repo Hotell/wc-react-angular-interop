@@ -1,0 +1,9 @@
+@import "~mdl-card/mdl-card";
+
+#actionsSlot::slotted(mdl-button) {
+  margin: 0 80px 0 0;
+}
+#actionsSlot::slotted(mdl-button:last-child) {
+  margin-right: 0;
+}
+

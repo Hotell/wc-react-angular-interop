@@ -226,7 +226,7 @@ declare interface HTMLElement {
   // shadow DOM API
   shadowRoot: DocumentFragment,
   attachShadow( { mode:string } ): HTMLElement,
-  assignedNodes( { flatten }:{flatten?: boolean} ): NodeList,
+  assignedNodes( { flatten }?:{flatten?: boolean} ): NodeList,
   assignedSlot: string|void,
 }
 
@@ -236,7 +236,171 @@ declare interface HTMLElementStatic {
 
 
 // MDL
-
+// 1.x
 declare module MaterialDesignLite {
   class MaterialTooltip {}
+}
+
+
+// 2.x
+declare module 'mdl-ripple' {
+
+  interface Adapter extends MDLBase.Adapter {
+    browserSupportsCssVars: () => /* boolean - cached */ {},
+    isUnbounded: () => /* boolean */ {},
+    isSurfaceActive: () => /* boolean */ {},
+    addClass: (/* className: string */) => {},
+    removeClass: (/* className: string */) => {},
+    registerInteractionHandler: (/* evtType: string, handler: EventListener */) => {},
+    deregisterInteractionHandler: (/* evtType: string, handler: EventListener */) => {},
+    registerResizeHandler: (/* handler: EventListener */) => {},
+    deregisterResizeHandler: (/* handler: EventListener */) => {},
+    updateCssVariable: (/* varName: string, value: string */) => {},
+    computeBoundingRect: () => /* ClientRect */ {},
+    getWindowPageOffset: () => /* {x: number, y: number} */ {}
+  }
+  type Numbers = {
+    FG_TRANSFORM_DELAY_MS: 80,
+    OPACITY_DURATION_DIVISOR: 3,
+    ACTIVE_OPACITY_DURATION_MS: 110,
+    MIN_OPACITY_DURATION_MS: 200,
+    UNBOUNDED_TRANSFORM_DURATION_MS: 200
+  };
+  type Strings = {
+    VAR_SURFACE_WIDTH: string
+    VAR_SURFACE_HEIGHT: string
+    VAR_FG_SIZE: string
+    VAR_FG_UNBOUNDED_OPACITY_DURATION: string
+    VAR_FG_UNBOUNDED_TRANSFORM_DURATION: string
+    VAR_LEFT: string
+    VAR_TOP: string
+    VAR_XF_ORIGIN_X: string
+    VAR_XF_ORIGIN_Y: string
+    VAR_FG_APPROX_XF: string
+    ANIMATION_END_EVENT: string
+    TRANSITION_END_EVENT: string
+  }
+  type CssClasses = {
+    ROOT: string
+    UNBOUNDED: string
+    BG_ACTIVE: string
+    BG_BOUNDED_ACTIVE_FILL: string
+    FG_BOUNDED_ACTIVE_FILL: string
+    FG_UNBOUNDED_ACTIVATION: string
+    FG_UNBOUNDED_DEACTIVATION: string
+  }
+
+  export default class MDLRipple extends MDLBase.MDLComponent {
+    unbounded: boolean;
+    constructor(root: Element)
+    static attachTo( root: Element, {isUnbounded}?:{isUnbounded:boolean} ): MDLRipple
+    static createAdapter( instance: any ): Adapter
+
+    getDefaultFoundation(): MDLRippleFoundation
+    initialSyncWithDOM(): void
+  }
+
+  export class MDLRippleFoundation extends MDLBase.MDLFoundation {
+
+    static defaultAdapter: Adapter;
+    static cssClasses: CssClasses;
+    static strings: Strings;
+    static numbers: Numbers;
+
+    init()
+    destroy()
+    layout(): void
+  }
+}
+
+declare module 'mdl-checkbox' {
+  interface Adapter extends MDLBase.Adapter {
+    addClass: (/* className: string */) => {},
+    removeClass: (/* className: string */) => {},
+    registerAnimationEndHandler: (/* handler: EventListener */) => {},
+    deregisterAnimationEndHandler: (/* handler: EventListener */) => {},
+    registerChangeHandler: (/* handler: EventListener */) => {},
+    deregisterChangeHandler: (/* handler: EventListener */) => {},
+    getNativeControl: () => /* HTMLInputElement */ {},
+    forceLayout: () => {},
+    isAttachedToDOM: () => /* boolean */ {}
+  }
+  type Numbers = {
+    ANIM_END_LATCH_MS: number
+  }
+  type Strings = {
+    ANIM_END_EVENT_NAME: string,
+    NATIVE_CONTROL_SELECTOR: string,
+    TRANSITION_STATE_INIT: string,
+    TRANSITION_STATE_CHECKED: string,
+    TRANSITION_STATE_UNCHECKED: string,
+    TRANSITION_STATE_INDETERMINATE: string,
+  }
+  type CssClasses = {
+    ROOT: string,
+    CHECKED: string
+    INDETERMINATE: string
+    ANIM_UNCHECKED_CHECKED: string
+    ANIM_UNCHECKED_INDETERMINATE: string
+    ANIM_CHECKED_UNCHECKED: string
+    ANIM_CHECKED_INDETERMINATE: string
+    ANIM_INDETERMINATE_CHECKED: string
+    ANIM_INDETERMINATE_UNCHECKED: string
+  }
+
+  export default class MDLCheckbox extends MDLBase.MDLComponent {
+    static attachTo( root: Element ): MDLCheckbox
+
+    getDefaultFoundation(): MDLCheckboxFoundation
+  }
+  export class MDLCheckboxFoundation extends MDLBase.MDLFoundation {
+    static defaultAdapter: Adapter;
+    static cssClasses: CssClasses;
+    static strings: Strings;
+    static numbers: Numbers;
+  }
+}
+
+declare module 'mdl-base' {
+  export = MDLBase
+}
+declare namespace MDLBase {
+  class MDLComponent {
+    static attachTo(root:Element): MDLComponent
+
+    root_: Element;
+    foundation_: MDLFoundation;
+    constructor(root: Element, foundation?: any)
+
+    /**
+     * Subclasses must override this method to return a properly configured foundation class for the component.
+     */
+    getDefaultFoundation()
+    /**
+    // Subclasses should override this method if they need to perform work to synchronize with a host DOM
+    // object. An example of this would be a form control wrapper that needs to synchronize its internal state
+    // to some property or attribute of the host DOM. Please note: this is *not* the place to perform DOM
+    // reads/writes that would cause layout / paint, as this is called synchronously from within the constructor.
+     */
+    initialSyncWithDOM()
+
+    /**
+     * Subclasses may implement this method to release any resources / deregister any listeners they have attached.
+     * An example of this might be deregistering a resize event from the window object.
+     */
+    destroy()
+  }
+  class MDLFoundation {
+    static cssClasses: {[key:string]:string};
+    static strings: {[key:string]:string};
+    static numbers: {[key:string]:number};
+    static defaultAdapter: any;
+
+    constructor( adapter?: Adapter )
+    init(): void
+    destroy(): void
+  }
+  interface Adapter {
+    [key: string]: Function
+  }
 }

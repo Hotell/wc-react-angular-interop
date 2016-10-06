@@ -1,0 +1,13 @@
+@import "~mdl-ripple/mdl-ripple";
+@import "../elevation/elevation";
+
+
+.mdl-ripple {
+  @include mdl-ripple-base;
+  @include mdl-ripple-bg((pseudo: "::before"));
+  @include mdl-ripple-fg((pseudo: "::after"));
+  // ...
+
+  /* "Bound" the ripple, preventing the pseudo-elements from bleeding out of the box. */
+  overflow: hidden;
+}
