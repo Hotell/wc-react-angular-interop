@@ -35,7 +35,7 @@
   "dependencies": {
     "@webcomponents/custom-elements": "github:webcomponents/custom-elements",
     "@webcomponents/shadycss": "github:webcomponents/shadycss",
-    "@webcomponents/shadydom": "github:npm webcomponents/shadydom",
+    "@webcomponents/shadydom": "github:webcomponents/shadydom",
     "material-design-lite": "1.2.1",
     "skatejs": "1.5.2",
     "skatejs-web-components": "1.2.0"
