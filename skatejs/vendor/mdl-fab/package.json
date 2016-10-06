@@ -1,0 +1,43 @@
+{
+  "_args": [
+    [
+      "mdl-fab@../mdl-fab",
+      "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite"
+    ]
+  ],
+  "_from": "../../../github/material-design-lite/packages/mdl-fab",
+  "_id": "mdl-fab@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/mdl-fab",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "mdl-fab",
+    "raw": "mdl-fab@../mdl-fab",
+    "rawSpec": "../mdl-fab",
+    "scope": null,
+    "spec": "/Users/hotell/Devel/github/material-design-lite/packages/mdl-fab",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "/material-design-lite"
+  ],
+  "_resolved": "file:../../../github/material-design-lite/packages/mdl-fab",
+  "_shasum": "e820b2a8d873b1a929c5f07b14621ffc6d56e006",
+  "_shrinkwrap": null,
+  "_spec": "mdl-fab@../mdl-fab",
+  "_where": "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite",
+  "dependencies": {
+    "mdl-animation": "^1.0.0",
+    "mdl-elevation": "^1.0.0",
+    "mdl-theme": "^1.0.0"
+  },
+  "description": "A simple FAB component provided by Material Design Lite",
+  "devDependencies": {},
+  "license": "Apache-2.0",
+  "name": "mdl-fab",
+  "optionalDependencies": {},
+  "readme": "# MDL FAB\n\nThe MDL FAB component is a spec-aligned button component adhering to the\n [Material Design FAB requirements](https://material.google.com/components/buttons-floating-action-button.html).\n It works without JavaScript with basic functionality for all states.\n If you initiate the JavaScript object for a button, then it will be enhanced with ripple effects. (Not yet implemented)\n\n## Installation\n\n> Note: Installation via the npm registry will be available after alpha.\n\n## Usage\n\nThe demonstrations use the [Material Design Icon Font](https://design.google.com/icons/).\nYou may include this to use them as shown or use any other icon method you wish.\n\n### Default\n\n```html\n<button class=\"mdl-fab material-icons\" aria-label=\"Favorite\">\n  favorite\n</button>\n```\n\n### Mini\n\n```html\n<button class=\"mdl-fab mdl-fab--mini material-icons\" aria-label=\"Favorite\">\n  favorite\n</button>\n```\n\n### Plain\n\n```html\n<button class=\"mdl-fab mdl-fab--plain material-icons\" aria-label=\"favorite\">\n  favorite\n</button>\n```\n\n### Absolutely positioned\n\nBy default the FAB rests in the page where it sits in the content flow.\nDevelopers must position it as-needed within their applications designs.\n\n```html\n<!--\n  This will position the FAB in the bottom-right corner.\n  Modify to fit your designs requirements.\n-->\n<style>\n.app-fab--absolute.app-fab--absolute {\n  position: absolute;\n  bottom: 1rem;\n  right: 1rem;\n}\n\n@media(min-width: 1024px) {\n   .app-fab--absolute.app-fab--absolute {\n    bottom: 3rem;\n    right: 5rem;\n  }\n}\n</style>\n<button class=\"mdl-fab app-fab--absolute\" aria-label=\"Edit\">\n  <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\">\n    <path d=\"M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z\"/>\n  </svg>\n</button>\n```\n\n> **Note** In this example we are using an SVG icon. When you are using SVG icons do _not_ specifiy the `fill` attribute. Fill is set by the components where SVGs may be used.\n\n## Classes\n\n### Block\n\nThe block class is `mdl-fab`. This defines the top-level button element.\n\n### Element\n\nThe button component has no inner elements.\n\n### Modifier\n\nThe provided modifiers are:\n\n| Class             | Description                             |\n| ------------------| --------------------------------------- |\n| `mdl-fab--mini`   | Makes the fab smaller (40 x 40 pixels). |\n| `mdl-fab--plain`  | Makes the FAB have a white background.  |\n",
+  "readmeFilename": "README.md",
+  "version": "1.0.0"
+}

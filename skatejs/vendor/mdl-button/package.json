@@ -1,0 +1,45 @@
+{
+  "_args": [
+    [
+      "mdl-button@../mdl-button",
+      "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite"
+    ]
+  ],
+  "_from": "../../../github/material-design-lite/packages/mdl-button",
+  "_id": "mdl-button@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/mdl-button",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "mdl-button",
+    "raw": "mdl-button@../mdl-button",
+    "rawSpec": "../mdl-button",
+    "scope": null,
+    "spec": "/Users/hotell/Devel/github/material-design-lite/packages/mdl-button",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "/material-design-lite",
+    "/mdl-snackbar"
+  ],
+  "_resolved": "file:../../../github/material-design-lite/packages/mdl-button",
+  "_shasum": "95d5b9d9c3a83f7ef617d8ac92664a5533705c8a",
+  "_shrinkwrap": null,
+  "_spec": "mdl-button@../mdl-button",
+  "_where": "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite",
+  "dependencies": {
+    "mdl-animation": "^1.0.0",
+    "mdl-elevation": "^1.0.0",
+    "mdl-theme": "^1.0.0",
+    "mdl-typography": "^1.0.0"
+  },
+  "description": "The MDL Button component is a spec-aligned button component adhering to the  [Material Design button requirements](https://material.google.com/components/buttons.html).  It works without JavaScript with basic functionality for all states.  If you initiate the JavaScript object for a button, then it will be enhanced with ripple effects. (Not yet implemented)",
+  "devDependencies": {},
+  "license": "Apache 2.0",
+  "name": "mdl-button",
+  "optionalDependencies": {},
+  "readme": "# MDL Button\n\nThe MDL Button component is a spec-aligned button component adhering to the\n [Material Design button requirements](https://material.google.com/components/buttons.html).\n It works without JavaScript with basic functionality for all states.\n If you initiate the JavaScript object for a button, then it will be enhanced with ripple effects. (Not yet implemented)\n\n## Installation\n\n> Note: Installation via the npm registry will be available after alpha.\n\n## Usage\n\n### Flat\n\n```html\n<button class=\"mdl-button\">\n  Flat button\n</button>\n```\n\n### Colored\n\n```html\n<button class=\"mdl-button mdl-button--accent\">\n  Colored button\n</button>\n```\n\n### Raised\n\n```html\n<button class=\"mdl-button mdl-button--raised\">\n  Raised button\n</button>\n```\n\n### Disabled\n\n```html\n<button class=\"mdl-button mdl-button--raised\" disabled>\n  Raised disabled button\n</button>\n```\n\n## Classes\n\n### Block\n\nThe block class is `mdl-button`. This defines the top-level button element.\n\n### Element\n\nThe button component has no inner elements.\n\n### Modifier\n\nThe provided modifiers are:\n\n| Class                 | Description                                             |\n| --------------------- | ------------------------------------------------------- |\n| `mdl-button--dense`   | Compresses the button text to make it slightly smaller. |\n| `mdl-button--raised`  | Elevates the button and creates a colored background.   |\n| `mdl-button--compact` | Reduces the amount of horizontal padding in the button. |\n| `mdl-button--primary` | Colors the button with the primary color.               |\n| `mdl-button--accent`  | Colors the button with the accent color.                |\n",
+  "readmeFilename": "README.md",
+  "version": "1.0.0"
+}

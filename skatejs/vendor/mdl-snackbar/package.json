@@ -1,0 +1,45 @@
+{
+  "_args": [
+    [
+      "mdl-snackbar@../mdl-snackbar",
+      "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite"
+    ]
+  ],
+  "_from": "../../../github/material-design-lite/packages/mdl-snackbar",
+  "_id": "mdl-snackbar@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/mdl-snackbar",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "mdl-snackbar",
+    "raw": "mdl-snackbar@../mdl-snackbar",
+    "rawSpec": "../mdl-snackbar",
+    "scope": null,
+    "spec": "/Users/hotell/Devel/github/material-design-lite/packages/mdl-snackbar",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "/material-design-lite"
+  ],
+  "_resolved": "file:../../../github/material-design-lite/packages/mdl-snackbar",
+  "_shasum": "b59a0add3d72ed433993f721c683c6caea23f6b9",
+  "_shrinkwrap": null,
+  "_spec": "mdl-snackbar@../mdl-snackbar",
+  "_where": "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite",
+  "dependencies": {
+    "mdl-animation": "^1.0.0",
+    "mdl-base": "^1.0.0",
+    "mdl-button": "^1.0.0",
+    "mdl-theme": "^1.0.0"
+  },
+  "description": "A material design snackbar/toast component",
+  "devDependencies": {},
+  "license": "MIT",
+  "main": "./index.js",
+  "name": "mdl-snackbar",
+  "optionalDependencies": {},
+  "readme": "# MDL Snackbar\n\nThe MDL Snackbar component is a spec-aligned snackbar/toast component adhering to the\n[Material Design snackbars & toasts requirements](https://material.google.com/components/snackbars-toasts.html#snackbars-toasts-specs).\nIt requires JavaScript the trigger the display and hide of the snackbar.\n\n## Installation\n\n> Note: Installation via the npm registry will be available after alpha.\n\n## Usage\n\n### Snackbar DOM\n\n```html\n<div class=\"mdl-snackbar\"\n     aria-live=\"assertive\"\n     aria-atomic=\"true\"\n     aria-hidden=\"true\">\n  <div class=\"mdl-snackbar__text\"></div>\n  <div class=\"mdl-snackbar__action-wrapper\">\n    <button type=\"button\" class=\"mdl-button mdl-snackbar__action-button\"></button>\n  </div>\n</div>\n```\n\n### Using the JS Component\n\nMDL Snackbar ships with a Component / Foundation combo which provides the API for showing snackbar\nmessages with optional action.\n\n#### Including in code\n\n##### ES2015\n\n```javascript\nimport MDLSnackbar, {MDLSnackbarFoundation} from 'mdl-snackbar';\n```\n\n##### CommonJS\n\n```javascript\nconst mdlSnackbar = require('mdl-snackbar');\nconst MDLSnackbar = mdlSnackbar.default;\nconst MDLSnackbarFoundation = mdlSnackbar.MDLSnackbarFoundation;\n```\n\n##### AMD\n\n```javascript\nrequire(['path/to/mdl-snackbar'], mdlSnackbar => {\n  const MDLSnackbar = mdlSnackbar.default;\n  const MDLSnackbarFoundation = mdlSnackbar.MDLSnackbarFoundation;\n});\n```\n\n##### Global\n\n```javascript\nconst MDLSnackbar = mdl.Snackbar.default;\nconst MDLSnackbarFoundation = mdl.Snackbar.MDLSnackbarFoundation;\n```\n\n#### Fully-automatic: DOM Rendering + Initialization\n\n```javascript\nconst root = MDLSnackbar.buildDom();\nconst snackbar = MDLSnackbar.attachTo(root);\n// append root to element, etc...\n```\n\nYou can use `MDLSnackbar.buildDom` to dynamically construct snackbar DOM for you.\n\n#### Using an existing element.\n\nIf you do not care about retaining the component instance for the snackbar, simply call `attachTo()`\nand pass it a DOM element.  \n\n```javascript\nmdl.Snackbar.attachTo(document.querySelector('.mdl-snackbar'));\n```\n\n#### Manual Instantiation\n\nSnackbars can easily be initialized using their default constructors as well, similar to `attachTo`.\n\n```javascript\nimport MDLSnackbar from 'mdl-snackbar';\n\nconst snackbar = new MDLSnackbar(document.querySelector('.mdl-snackbar'));\n```\n\n### Showing a message and action\n\nOnce you have obtained an MDLSnackbar instance attached to the DOM, you can use\nthe `show` method to trigger the display of a message with optional action. The\n`show`  method takes an object for snackbar data. The table below shows the\nproperties and their usage.\n\n| Property | Effect | Remarks | Type |\n|-----------|--------|---------|---------|\n| message   | The text message to display. | Required | String |\n| timeout   | The amount of time in milliseconds to show the snackbar. | Optional (default 2750) | Integer |\n| actionHandler | The function to execute when the action is clicked. | Optional | Function |\n| actionText | The text to display for the action button. | Required if actionHandler is set |  String |\n| multiline | Whether to show the snackbar with space for multiple lines of text | Optional |  Boolean |\n| actionOnBottom | Whether to show the action below the multiple lines of text | Optional, applies when multiline is true |  Boolean |\n\n### Using the Foundation Class\n\nMDL Snackbar ships with an `MDLSnackbarFoundation` class that external frameworks and libraries can\nuse to integrate the component. As with all foundation classes, an adapter object must be provided.\nThe adapter for snackbars must provide the following functions, with correct signatures:\n\n| Method Signature | Description |\n| --- | --- |\n| `addClass(className: string) => void` | Adds a class to the root element. |\n| `removeClass(className: string) => void` | Removes a class from the root element. |\n| `setAriaHidden() => void` | Sets `aria-hidden=\"true\"` on the root element. |\n| `unsetAriaHidden() => void` | Removes the `aria-hidden` attribute from the root element. |\n| `setMessageText(message: string) => void` | Set the text content of the message element. |\n| `setActionText(actionText: string) => void` | Set the text content of the action element. |\n| `setActionAriaHidden() => void` | Sets `aria-hidden=\"true\"` on the action element. |\n| `unsetActionAriaHidden() => void` | Removes the `aria-hidden` attribute from the action element. |\n| `registerActionClickHandler(handler: EventListener) => void` | Registers an event handler to be called when a `click` event is triggered on the action element. |\n| `deregisterActionClickHandler(handler: EventListener) => void` | Deregisters an event handler from a `click` event on the action element. This will only be called with handlers that have previously been passed to `registerActionClickHandler` calls. |\n| `registerTransitionEndHandler(handler: EventListener) => void` | Registers an event handler to be called when an `transitionend` event is triggered on the root element. Note that you must account for vendor prefixes in order for this to work correctly. |\n| `deregisterTransitionEndHandler(handler: EventListener) => void` | Deregisters an event handler from an `transitionend` event listener. This will only be called with handlers that have previously been passed to `registerTransitionEndHandler` calls. |\n\n## Avoiding Flash-Of-Unstyled-Content (FOUC)\n\nIf you are loading the `mdl-snackbar` CSS asynchronously, you may experience a brief flash-of-unstyled-content (FOUC) due to the\nsnackbar's translate transition running once the CSS loads. To avoid this temporary FOUC, you can add the following simple style\nbefore the `mdl-snackbar` CSS is loaded:\n\n```css\n.mdl-snackbar { transform: translateY(100%); }\n```\nThis will move the snackbar offscreen until the CSS is fully loaded and avoids a translate transition upon load.\n",
+  "readmeFilename": "README.md",
+  "version": "1.0.0"
+}

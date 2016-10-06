@@ -1,0 +1,56 @@
+{
+  "_args": [
+    [
+      "../../../github/material-design-lite/packages/material-design-lite",
+      "/Users/hotell/Devel/labs/wc-react-angular-interop/skatejs"
+    ]
+  ],
+  "_from": "../../../github/material-design-lite/packages/material-design-lite",
+  "_id": "material-design-lite@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/material-design-lite",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": null,
+    "raw": "../../../github/material-design-lite/packages/material-design-lite",
+    "rawSpec": "../../../github/material-design-lite/packages/material-design-lite",
+    "scope": null,
+    "spec": "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "file:../../../github/material-design-lite/packages/material-design-lite",
+  "_shasum": "6f790e9984e9af82cd8500bcee58a7fd64daddcc",
+  "_shrinkwrap": null,
+  "_spec": "../../../github/material-design-lite/packages/material-design-lite",
+  "_where": "/Users/hotell/Devel/labs/wc-react-angular-interop/skatejs",
+  "dependencies": {
+    "mdl-animation": "../mdl-animation",
+    "mdl-auto-init": "../mdl-auto-init",
+    "mdl-base": "../mdl-base",
+    "mdl-button": "../mdl-button",
+    "mdl-card": "../mdl-card",
+    "mdl-checkbox": "../mdl-checkbox",
+    "mdl-drawer": "../mdl-drawer",
+    "mdl-elevation": "../mdl-elevation",
+    "mdl-fab": "../mdl-fab",
+    "mdl-icon-toggle": "../mdl-icon-toggle",
+    "mdl-list": "../mdl-list",
+    "mdl-radio": "../mdl-radio",
+    "mdl-ripple": "../mdl-ripple",
+    "mdl-snackbar": "../mdl-snackbar",
+    "mdl-textfield": "../mdl-textfield",
+    "mdl-theme": "../mdl-theme",
+    "mdl-typography": "../mdl-typography"
+  },
+  "description": "The canonical material design implementation for the web platform",
+  "devDependencies": {},
+  "license": "Apache-2.0",
+  "name": "material-design-lite",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "version": "1.0.0"
+}

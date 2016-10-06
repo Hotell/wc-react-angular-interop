@@ -1,0 +1,49 @@
+{
+  "_args": [
+    [
+      "mdl-animation@../mdl-animation",
+      "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite"
+    ]
+  ],
+  "_from": "../../../github/material-design-lite/packages/mdl-animation",
+  "_id": "mdl-animation@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/mdl-animation",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "mdl-animation",
+    "raw": "mdl-animation@../mdl-animation",
+    "rawSpec": "../mdl-animation",
+    "scope": null,
+    "spec": "/Users/hotell/Devel/github/material-design-lite/packages/mdl-animation",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "/material-design-lite",
+    "/mdl-button",
+    "/mdl-checkbox",
+    "/mdl-drawer",
+    "/mdl-elevation",
+    "/mdl-fab",
+    "/mdl-icon-toggle",
+    "/mdl-radio",
+    "/mdl-ripple",
+    "/mdl-snackbar",
+    "/mdl-textfield"
+  ],
+  "_resolved": "file:../../../github/material-design-lite/packages/mdl-animation",
+  "_shasum": "92c4215f031f403b7b8b4c953eff1fa4223f4603",
+  "_shrinkwrap": null,
+  "_spec": "mdl-animation@../mdl-animation",
+  "_where": "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite",
+  "dependencies": {},
+  "description": "Animation Variables and Mixins for Material Design",
+  "devDependencies": {},
+  "license": "Apache-2.0",
+  "name": "mdl-animation",
+  "optionalDependencies": {},
+  "readme": "# mdl-animation\n\nmdl-animation is a sass / css library which provides variables, mixins, and classes for Material Design animation, based off of the [motion guidelines](https://material.google.com/motion/duration-easing.html#duration-easing-common-durations). Currently, it only covers easing curves.\n\n## Installation\n\n> Note: Installation via the npm registry will be available after alpha.\n\n## Usage\n\nWe currently have variables for the following 3 animation curves:\n\n| Variable name | timing function | use case |\n| --- | --- | --- |\n| `$mdl-animation-fast-out-slow-in-timing-function` | `cubic-bezier(.4, 0, .2, 1)` | Standard curve; any animations that are visible from start to finish (e.g. a FAB transforming into a toolbar) |\n| `$mdl-animation-linear-out-slow-in-timing-function` | `cubic-bezier(0, 0, .2, 1)` | Animations that cause objects to enter the screen (e.g. a fade in) |\n| `$mdl-animation-fast-out-linear-in-timing-function` | `cubic-bezier(.4, 0, ``, 1)` | Animations that cause objects to leave the screen (e.g. a fade out) |\n\n### SCSS\n\nSimply drop `mdl-animation` into your build and start using the variables:\n\n```scss\n.mdl-thing--animating {\n  animation: foo 175ms $mdl-animation-fast-out-slow-in-timing-function;\n}\n```\n\nor the mixins, which simply assign their corresponding variables to the `animation-timing-function`\nproperty:\n\n```scss\n.mdl-thing--on-screen {\n  @include mdl-animation-fast-out-linear-in;\n}\n```\n\nEvery mixin has the same name as its corresponding variable, without the `-timing-function` suffix.\n\n### CSS Classes\n\n> NOTE: dist/ will be available when installing via NPM.\n\nAlternatively, you can include the built stylesheet and use the classes it exports within your HTML\n\n```html\n<link href=\"path/to/mdl-animation/dist/mdl-animation.css\" rel=\"stylesheet\">\n<!-- ... -->\n<div id=\"my-animating-div\" class=\"mdl-animation-fast-out-slow-in\">hi</div>\n```\n\nCSS Classes have the exact same name as their mixin counterparts.\n\n### Overriding the default curves.\n\nAll animation variables are marked with `!default`, thus they can be overridden should the need\narise.\n",
+  "readmeFilename": "README.md",
+  "version": "1.0.0"
+}

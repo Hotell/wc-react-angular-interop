@@ -1,0 +1,43 @@
+{
+  "_args": [
+    [
+      "mdl-typography@../mdl-typography",
+      "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite"
+    ]
+  ],
+  "_from": "../../../github/material-design-lite/packages/mdl-typography",
+  "_id": "mdl-typography@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/mdl-typography",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "mdl-typography",
+    "raw": "mdl-typography@../mdl-typography",
+    "rawSpec": "../mdl-typography",
+    "scope": null,
+    "spec": "/Users/hotell/Devel/github/material-design-lite/packages/mdl-typography",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "/material-design-lite",
+    "/mdl-button",
+    "/mdl-card",
+    "/mdl-drawer",
+    "/mdl-list",
+    "/mdl-textfield"
+  ],
+  "_resolved": "file:../../../github/material-design-lite/packages/mdl-typography",
+  "_shasum": "7844139e118dbd9393ff7effb02db13d4f733a3a",
+  "_shrinkwrap": null,
+  "_spec": "mdl-typography@../mdl-typography",
+  "_where": "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite",
+  "dependencies": {},
+  "description": "MDL typography is a CSS-only component that implements the [Material Design typography guidelines](https://material.google.com/style/typography.html), and makes them available to developers as CSS classes.",
+  "devDependencies": {},
+  "name": "mdl-typography",
+  "optionalDependencies": {},
+  "readme": "# mdl-typography\n\nMDL typography is a CSS-only component that implements the\n[Material Design typography guidelines](https://material.google.com/style/typography.html), and makes them available to\ndevelopers as CSS classes.\n\n## Installation\n\n> Note: Installation via the npm registry will be available after alpha.\n\n\n## CSS class usage\n\n```html\n<head>\n  <link href=\"https://fonts.googleapis.com/css?family=Roboto:300,400,500\" rel=\"stylesheet\">\n</head>\n<body class=\"mdl-typography\">\n  <h1 class=\"mdl-typography--display4\">Big header</h1>\n</body>\n```\n\nMaterial Design typography uses the Roboto font, which we're loading from Google Fonts in the example above.\n\n> Note: You can load more font weights and styles if you wish, but `mdl-typography` only uses 300, 400 and 500.\n\nThe `mdl-typography` class defines basic properties for text, such as the typeface and antialiasing settings.\n\n### Formatting your text\n\n#### Style\n\nSimply add the corresponding style class to format your text:\n\n```html\n<body class=\"mdl-typography\">\n  <h1 class=\"mdl-typography--display4\">Big header</h1>\n\n  <p class=\"mdl-typography--body1\">\n    A paragraph with <span class=\"mdl-typography--body2\">emphasis</span>.\n  </p>\n</body>\n```\n\nThe full list of styles:\n\n- `mdl-typography--display4`\n- `mdl-typography--display3`\n- `mdl-typography--display2`\n- `mdl-typography--display1`\n- `mdl-typography--headline`\n- `mdl-typography--title`\n- `mdl-typography--subheading`\n- `mdl-typography--body2`\n- `mdl-typography--body1`\n- `mdl-typography--caption`\n\n#### Margins and positioning\n\nIn order to minimize unexpected behavior, the style classes only specify font properties, such as size, weight and line\nheight.\n\nThis means that while text will be correctly styled, it may not be correctly positioned. If you include the\n`mdl-typography--adjust-margin` class, though, positioning will be adjusted according to the style:\n\n```html\n<body class=\"mdl-typography\">\n  <h1 class=\"mdl-typography--display4 mdl-typography--adjust-margin\">\n    Big header\n  </h1>\n\n  <p class=\"mdl-typography--body1 mdl-typography--adjust-margin\">\n    A paragraph with\n    <span class=\"mdl-typography--body2 mdl-typography--adjust-margin\">\n      emphasis\n    </span>.\n  </p>\n</body>\n```\n\n> Note: as the name implies, `mdl-typography--adjust-margin` will change the margin properties of the element it's\napplied to, in order to align text correctly. Because of this, it should only be used in a text context; using this\nproperty on UI elements such as buttons may cause them to be positioned incorrectly.\n\n\n## Sass mixin usage\n\n### mdl-typography-base\n\n```scss\n@include mdl-typography-base;\n```\n\n`mdl-typography-base` defines the basic properties for Material Design typography, namely the font and aliasing\nsettings, without defining any particular font size or style.\n\n\n### mdl-typography-style\n\n```scss\n@include mdl-typography-style(display4);\n```\n\nApplies one of the typography styles. Note that this includes the font family and aliasing definitions; you don't need\nto include `mdl-typography-base` as well.\n\nThe full list of styles:\n- `display4`\n- `display3`\n- `display2`\n- `display1`\n- `headline`\n- `title`\n- `subheading`\n- `body2`\n- `body1`\n- `caption`\n\n\n### mdl-typography-adjust-margin\n\n```scss\n@include mdl-typography-style(display4);\n@include mdl-typography-adjust-margin(display4);\n```\n\nIn order to minimize unexpected behavior, the style mixins only specify font properties, such as size, weight and line\nheight.\n\nThis means that while text will be correctly styled, it may not be correctly positioned. If you include the\n`mdl-typography-adjust-margin` mixin as well, though, positioning will be adjusted according to the style.\n\n> Note: as the name implies, `mdl-typography-adjust-margin` will change the margin properties of the element it's\napplied to, in order to align text correctly. Because of this, it should only be used in a text context; using this\nproperty on UI elements such as buttons may cause them to be positioned incorrectly.\n\nThe list of styles is the same as for `mdl-typography-style`:\n- `display4`\n- `display3`\n- `display2`\n- `display1`\n- `headline`\n- `title`\n- `subheading`\n- `body2`\n- `body1`\n- `caption`\n",
+  "readmeFilename": "README.md",
+  "version": "1.0.0"
+}

@@ -1,0 +1,44 @@
+{
+  "_args": [
+    [
+      "mdl-radio@../mdl-radio",
+      "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite"
+    ]
+  ],
+  "_from": "../../../github/material-design-lite/packages/mdl-radio",
+  "_id": "mdl-radio@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/mdl-radio",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "mdl-radio",
+    "raw": "mdl-radio@../mdl-radio",
+    "rawSpec": "../mdl-radio",
+    "scope": null,
+    "spec": "/Users/hotell/Devel/github/material-design-lite/packages/mdl-radio",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "/material-design-lite"
+  ],
+  "_resolved": "file:../../../github/material-design-lite/packages/mdl-radio",
+  "_shasum": "5ddd0ac503c87a9ba50af62b610c657e2e39b421",
+  "_shrinkwrap": null,
+  "_spec": "mdl-radio@../mdl-radio",
+  "_where": "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite",
+  "dependencies": {
+    "mdl-animation": "^1.0.0",
+    "mdl-base": "^1.0.0",
+    "mdl-ripple": "^1.0.0",
+    "mdl-theme": "^1.0.0"
+  },
+  "description": "The MDL Radio component provides a radio button adhering to the [Material Design Specification](https://material.google.com/components/selection-controls.html#selection-controls-radio-button). It requires no Javascript out of the box, but can be enhanced with Javascript to provide better interaction UX as well as a component-level API for state modification.",
+  "devDependencies": {},
+  "license": "Apache-2.0",
+  "name": "mdl-radio",
+  "optionalDependencies": {},
+  "readme": "# MDL Radio\n\nThe MDL Radio component provides a radio button adhering to the [Material Design Specification](https://material.google.com/components/selection-controls.html#selection-controls-radio-button).\nIt requires no Javascript out of the box, but can be enhanced with Javascript to provide better\ninteraction UX as well as a component-level API for state modification.\n\n## Installation\n\n> NOTE: Installation via NPM will be available post-alpha.\n\n## Usage\n\n```html\n<div class=\"mdl-radio\">\n  <input class=\"mdl-radio__native-control\" type=\"radio\" id=\"radio-1\" name=\"radios\" checked>\n  <div class=\"mdl-radio__background\">\n    <div class=\"mdl-radio__outer-circle\"></div>\n    <div class=\"mdl-radio__inner-circle\"></div>\n  </div>\n</div>\n<label id=\"radio-1-label\" for=\"radio-1\">Radio 1</label>\n\n<div class=\"mdl-radio\">\n  <input class=\"mdl-radio__native-control\" type=\"radio\" id=\"radio-2\" name=\"radios\">\n  <div class=\"mdl-radio__background\">\n    <div class=\"mdl-radio__outer-circle\"></div>\n    <div class=\"mdl-radio__inner-circle\"></div>\n  </div>\n</div>\n<label id=\"radio-2-label\" for=\"radio-2\">Radio 2</label>\n```\n\n> NOTE: We plan on creating a generic `mdl-form-field` wrapper class - as seen within the demo -\n> that can be used to position form controls and labels, as well as make them RTL-aware.\n> See https://github.com/google/material-design-lite/issues/4775.\n\n#### Disabled Radios\n\n```html\n<div class=\"mdl-radio mdl-radio--disabled\">\n  <input class=\"mdl-radio__native-control\" type=\"radio\" id=\"radio-1\" name=\"radios\" disabled>\n  <div class=\"mdl-radio__background\">\n    <div class=\"mdl-radio__outer-circle\"></div>\n    <div class=\"mdl-radio__inner-circle\"></div>\n  </div>\n</div>\n<label id=\"radio-1-label\" for=\"radio-1\">Disabled Radio 1</label>\n```\n\nNote that `mdl-radio--disabled` is necessary on the root element in order to avoid having the ripple\nelements intercept pointer events when using JS.\n\n### Using the JS Component\n\nMDL Radio ships with Component / Foundation classes which provide enhanced interaction UX via\n[mdl-ripple](../mdl-ripple), as well as APIs for programmatically altering the radio's state.\n\n#### Including in code\n\n##### ES2015\n\n```javascript\nimport MDLRadio, {MDLRadioFoundation} from 'mdl-radio';\n```\n\n##### CommonJS\n\n```javascript\nconst mdlRadio = require('mdl-radio');\nconst MDLRadio = mdlRadio.default;\nconst MDLRadioFoundation = mdlRadio.MDLRadioFoundation;\n```\n\n##### AMD\n\n```javascript\nrequire(['path/to/mdl-radio'], mdlRadio => {\n  const MDLRadio = mdlRadio.default;\n  const MDLRadioFoundation = mdlRadio.MDLRadioFoundation;\n});\n```\n\n##### Global\n\n```javascript\nconst MDLRadio = mdl.Radio;\nconst MDLRadioFoundation = mdl.Radio.MDLRadioFoundation;\n```\n\n#### Fully-automatic: DOM Rendering + Initialization\n\n```javascript\nconst root = MDLRadio.buildDom({id: 'my-radio', labelId: 'my-radio-label'});\nconst radio = MDLRadio.attachTo(root);\n// append root to element, etc...\n```\n\nYou can use `MDLRadio.buildDom` to dynamically construct radio DOM for you.\n`MDLRadio.buildDom` takes an options object with values described below:\n\n| Option | Type | Default | Description |\n| --- | --- | --- | --- |\n| `id` | `string` | `mdl-radio-<unique_id>` | The id for the native radio control. |\n| `labelId` | `string` | `mdl-radio-label-<id_value>` | The id of the element which label's this radio. The default will use the `id` param and prefix it with `mdl-radio-label`. This value is attached to the `aria-labelledby` attribute on the native control. |\n| `groupId` | `string` | '' | When supplied, this will be given to the \"name\" attribute on the native radio control, allowing you to specify that a collection of buttons are part of the same radio group. |\n\n> **NOTE**: Regardless of how you instantiate a radio element, you should always strive to\n> provide an id for the radio that's used within its label's `for` attribute, as well as an id\n> for its label which is used in the native control's `aria-labelledby` attribute. This will ensure\n> that assistive devices function properly when using this component.\n\n#### Using an existing element.\n\nIf you do not care about retaining the component instance for the radio, simply call `attachTo()`\nand pass it a DOM element.  \n\n```javascript\nmdl.Radio.attachTo(document.querySelector('.mdl-radio'));\n```\n\n#### Manual Instantiation\n\nRadios can easily be initialized using their default constructors as well, similar to `attachTo`.\n\n```javascript\nimport MDLRadio from 'mdl-radio';\n\nconst radio = new MDLRadio(document.querySelector('.mdl-radio'));\n```\n\n#### MDLRadio API\n\nSimilar to regular DOM elements, the `MDLRadio` functionality is exposed through accessor\nmethods.\n\n##### MDLRadio.checked\n\nBoolean. Proxies to the foundation's `isChecked`/`setChecked` methods when retrieved/set\nrespectively.\n\n##### MDLRadio.disabled\n\nBoolean. Proxies to the foundation's `isDisabled/setDisabled` methods when retrieved/set\nrespectively.\n\n### Using the Foundation Class\n\nSince MDL Radio is primarily driven by its native control, the adapter API is extremely simple.\n\n| Method Signature | Description |\n| --- | --- |\n| `getNativeControl() => HTMLInputElement?` | Returns the native radio control, if available. Note that if this control is not available, the methods that rely on it will exit gracefully.|\n\n#### The full foundation API\n\n##### MDLRadioFoundation.isChecked() => boolean\n\nReturns the value of `adapter.getNativeControl().checked`. Returns `false` if `getNativeControl()`\ndoes not return an object.\n\n##### MDLRadioFoundation.setChecked(checked: boolean) => void\n\nSets the value of `adapter.getNativeControl().checked`. Does nothing if `getNativeControl()` does\nnot return an object.\n\n##### MDLRadioFoundation.isDisabled() => boolean\n\nReturns the value of `adapter.getNativeControl().disabled`. Returns `false` if `getNativeControl()`\ndoes not return an object.\n\n##### MDLRadioFoundation.setDisabled(disabled: boolean) => void\n\nSets the value of `adapter.getNativeControl().disabled`. Also adds/removes the `mdl-radio--disabled`\nclass based whether or not `disabled` is true. Gracefully handles the absence of a return value of\n`getNativeControl()`.\n\n## Theming\n\nMDL Radios use the theme's primary color by default for on states, and are completely dark theme\naware.\n",
+  "readmeFilename": "README.md",
+  "version": "1.0.0"
+}

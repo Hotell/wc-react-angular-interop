@@ -1,0 +1,45 @@
+{
+  "_args": [
+    [
+      "mdl-elevation@../mdl-elevation",
+      "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite"
+    ]
+  ],
+  "_from": "../../../github/material-design-lite/packages/mdl-elevation",
+  "_id": "mdl-elevation@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/mdl-elevation",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "mdl-elevation",
+    "raw": "mdl-elevation@../mdl-elevation",
+    "rawSpec": "../mdl-elevation",
+    "scope": null,
+    "spec": "/Users/hotell/Devel/github/material-design-lite/packages/mdl-elevation",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "/material-design-lite",
+    "/mdl-button",
+    "/mdl-card",
+    "/mdl-drawer",
+    "/mdl-fab"
+  ],
+  "_resolved": "file:../../../github/material-design-lite/packages/mdl-elevation",
+  "_shasum": "a6c098a2adbe19998a854b3823578a54634cf0ff",
+  "_shrinkwrap": null,
+  "_spec": "mdl-elevation@../mdl-elevation",
+  "_where": "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite",
+  "dependencies": {
+    "mdl-animation": "^1.0.0"
+  },
+  "description": "SASS mixins + CSS Classes for adding Material Design elevation to elements",
+  "devDependencies": {},
+  "license": "Apache-2.0",
+  "name": "mdl-elevation",
+  "optionalDependencies": {},
+  "readme": "# MDL Elevation\n\nMDL Elevation provides Sass mixins and CSS classes which are used to provide [shadows and\nelevation](https://material.google.com/what-is-material/elevation-shadows.html) to our material\ncomponents.\n\nThe elevation values are mapped out in a \"z-space\" and range from `0` to `24`.\nOur implementation is based on [Scott Hyndman's work](http://codepen.io/shyndman/full/ojxmdY/),\nwhich was created in collaboration with the designers on the Material Design team.\n\n> **A note about \"z-space\"**: Within the spec, elevation is normally referred to as having a `dp`\n> value. In other words, how many \"pixels\" above the base material is a piece of material elevated.\n> On a computer, this is normally represented by a 3-d coordinate system. We like `z-space` (or\n> just \"z\" for short) because it aligns with the technical definition of, and nomenclature for,\n> a 3-d coordinate system. Therefore, we feel it makes more sense than `dp`. However, when we refer\n> to `z-space` (or `z`), that can be used interchangeably with the spec's `dp`.\n\n## Installation\n\n> Note: Installation via the npm registry will be available after alpha.\n\n## Usage\n\n### Sass Mixin\n\nMDL Elevation exports an `mdl-elevation` mixin which can be used to set the elevation on a selector.\nIt works by assigning the correct elevation value to a selector's `box-shadow` property.\n\n`mdl-elevation` takes one `$z-value` argument which represents the z-space for that given elevation. For example, [cards](https://material.google.com/components/cards.html) have a resting elevation of `2dp`. Implementing that using MDL Elevation looks like the following:\n\n```scss\n@import \"mdl-elevation/mixins\";\n\n.mdl-card {\n  @include mdl-elevation(2);\n  // ...\n}\n```\n\nIt is also quite simple to alias common elevations throughout your application by leveraging this\nmixin to export classes:\n\n```scss\n$elevations: (low, medium-low, medium, medium-high, high);\n\n@for $i from 1 through length($elevations) {\n  $elev: nth($elevations, $i);\n  $z: $i * 2;\n  .my-app-elevation--#{$elev} {\n    @include mdl-elevation($z);\n  }\n}\n```\n\nNote that importing `mdl-elevation/mixins` does not output any CSS.\n\n### CSS Classes\n\nMDL Elevation also includes a CSS file that exports all z values as `mdl-elevation--z<N>` modifier\nclasses that can be easily used within HTML.\n\n> NOTE: dist/ dir will be available post-alpha in the distributed npm package.\n\n```html\n<!-- in <head> -->\n<link rel=\"stylesheet\" href=\"/path/to/mdl-elevation/dist/mdl-elevation.css\">\n<!-- ... -->\n<!-- in <body> -->\n<p class=\"mdl-elevation--z2\">Text that floats near the material surface</p>\n<p class=\"mdl-elevation--z18\">Text that floats far away from the material surface</p>\n```\n\n### Handling elevation transitions\n\nMDL Elevation includes utilities for transitioning between elevations.\n\n#### Sass functions/mixins\n\nThe `mdl-elevation-transition-rule` function takes an optional duration and optional easing curve and\nspits out a `transition` property value shorthand with `box-shadow` specified as the property, and\neither the supplied or default durations / easings for the transition.\n\nYou can also use the `mdl-elevation-transition` mixin - which takes the same arguments as the above\nfunction - to output a `transition` property with the correct values as well as a `will-change`\nproperty with `box-shadow` set.\n\n```scss\n@import \"mdl-animation/variables\";\n@import \"mdl-elevation/mixins\";\n\n.my-component {\n  @include mdl-elevation(2);\n  @include mdl-elevation-transition;\n\n  &--fast-transitions {\n    transition: mdl-elevation-transition-rule(180ms);\n  }\n\n  &--default-ease-transitions {\n    transition: mdl-elevation-transition-rule($mdl-elevation-transition-duration, ease);\n  }\n\n  &:focus {\n    @include mdl-elevation(4);\n  }\n\n  &:active {\n    @include mdl-elevation(8);\n  }\n}\n```\n\nIf you need more configurability over your transitions, you can easily accomplish this by using\nthe `mdl-elevation-transition-rule` function in conjunctions with the exported sass variables that\nmdl-elevation exposes for purposes of transitioning.\n\n```scss\n.my-component-with-custom-transitions {\n  @include mdl-elevation(2);\n\n  transition:\n    mdl-elevation-transition-rule(),\n    /* Configure opacity to use same duration and easing values as elevation */\n    opacity $mdl-elevation-transition-duration $mdl-elevation-transition-timing-function;\n  opacity: .7;\n  will-change: $mdl-elevation-property, opacity;\n\n  &:hover {\n    opacity: 1;\n  }\n\n  &:active {\n    @include mdl-elevation(6);\n  }\n}\n```\n\n#### CSS Classes\n\nMDL Elevation also exports an `mdl-elevation-transition` CSS class which can be used within HTML.\n\n```html\n<p class=\"mdl-elevation-transition mdl-elevation--z2\">My elevation will change at some point...</p>\n```\n",
+  "readmeFilename": "README.md",
+  "version": "1.0.0"
+}

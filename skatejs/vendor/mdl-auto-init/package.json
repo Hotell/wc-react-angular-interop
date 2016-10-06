@@ -1,0 +1,39 @@
+{
+  "_args": [
+    [
+      "mdl-auto-init@../mdl-auto-init",
+      "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite"
+    ]
+  ],
+  "_from": "../../../github/material-design-lite/packages/mdl-auto-init",
+  "_id": "mdl-auto-init@1.0.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/mdl-auto-init",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "mdl-auto-init",
+    "raw": "mdl-auto-init@../mdl-auto-init",
+    "rawSpec": "../mdl-auto-init",
+    "scope": null,
+    "spec": "/Users/hotell/Devel/github/material-design-lite/packages/mdl-auto-init",
+    "type": "directory"
+  },
+  "_requiredBy": [
+    "/material-design-lite"
+  ],
+  "_resolved": "file:../../../github/material-design-lite/packages/mdl-auto-init",
+  "_shasum": "9616e9487bb531015cc766b1840b71addc06bb1f",
+  "_shrinkwrap": null,
+  "_spec": "mdl-auto-init@../mdl-auto-init",
+  "_where": "/Users/hotell/Devel/github/material-design-lite/packages/material-design-lite",
+  "dependencies": {},
+  "description": "data-mdl-auto-init=<globalComponentName>",
+  "devDependencies": {},
+  "license": "Apache-2.0",
+  "main": "index.js",
+  "name": "mdl-auto-init",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "version": "1.0.0"
+}
