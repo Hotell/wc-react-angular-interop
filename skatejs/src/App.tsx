@@ -76,7 +76,11 @@ export class App extends Component {
   static render( elem: App ) {
 
     return ([
-      <style></style>,
+      <style>{`
+        fieldset{
+          padding:1rem
+        }
+      `}</style>,
       <section>
         <paper-card hello="World">
           <div slot="title">title Text Goes Here</div>
@@ -101,12 +105,17 @@ export class App extends Component {
           </div>
         </paper-card>
 
-        <div style="text-align:center;padding:1rem">
+        <fieldset>
+          <legend>Tooltip</legend>
           <paper-tooltip label="Follow">
             <iron-icon icon="add"></iron-icon>
           </paper-tooltip>
+        </fieldset>
 
-        </div>
+        <fieldset>
+          <legend>Checkbox</legend>
+          <paper-checkbox checked label="hello"/>
+        </fieldset>
 
         <ButtonConfigurator elem={elem}/>
 
