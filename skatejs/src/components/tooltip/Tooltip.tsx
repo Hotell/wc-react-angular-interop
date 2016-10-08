@@ -20,7 +20,6 @@ export class Tooltip extends MDLComponent {
   label: string|Element;
   large?: boolean;
   position?: 'left' | 'right' | 'top' | 'bottom';
-  private _root: HTMLDivElement;
   private _slottedContent: HTMLElement;
 
   static get is() { return 'paper-tooltip' }
@@ -34,16 +33,17 @@ export class Tooltip extends MDLComponent {
   }
 
   static created(elem: Tooltip){
-    console.info('Tooltip created')
+    MDLComponent.created( elem );
+    console.info('Tooltip created');
   }
 
   static attached(elem: Tooltip){
+    MDLComponent.attached( elem );
     console.info('Tooltip attached');
-    elem.upgradeMDL(elem._root);
   }
   static detached(elem: Tooltip){
-    elem.downgradeMDL(elem._root);
-    elem._root = null;
+    MDLComponent.detached( elem );
+    console.info('Tooltip detached');
   }
   static render( elem: Tooltip ) {
     console.info('Tooltip render');
@@ -62,7 +62,7 @@ export class Tooltip extends MDLComponent {
       <div>
         <span id={id}><slot /></span>
         <span
-          ref={( _ref ) => { elem._root = _ref; }}
+          ref={elem.setRoot}
           for={id}
           className={tooltipClasses}
         >

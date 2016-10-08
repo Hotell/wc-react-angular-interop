@@ -24,5 +24,5 @@ export function overrideMDLTooltip( mdlTooltipCtor ) {
       window.addEventListener( 'touchstart', this.boundMouseLeaveAndScrollHandler );
     }
   };
-  mdlTooltipCtor.prototype.init = newInitFn;
+  proto.init = newInitFn;
 }

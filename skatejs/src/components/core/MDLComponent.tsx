@@ -1,34 +1,43 @@
-import {Component} from 'skatejs';
+import { Component,symbols } from 'skatejs';
+import React from '../../shared/jsx';
+
+export const CssClasses = {
+  skipRoot: 'mdl-vdom-skip'
+};
 
 export class MDLComponent extends Component {
 
-  private button?: HTMLButtonElement;
+  get root() { return this._root }
+  private _root: Element;
 
-  static attached( elem: MDLComponent ) {}
-
+  static created(elem: MDLComponent){
+    console.info( 'MDLComponent created' );
+    elem._root = null;
+    elem.setRoot = elem.setRoot.bind(elem);
+  }
+  static attached( elem: MDLComponent ) {
+    console.info( 'MDLComponent attached' );
+    elem.upgradeMDL( elem._root )
+  }
   static detached( elem: MDLComponent ) {
-    // elem.unsetButton();
+    console.info( 'MDLComponent detached' );
+    elem.downgradeMDL(elem._root);
+    elem._root = null;
   }
 
-  // protected setButton( ref: HTMLButtonElement ) {
-  //   if(ref === this.button){
-  //     this.downgradeMDL( ref );
-  //   }
-  //   this.button = ref;
-  //   this.upgradeMDL( ref );
-  // }
-  //
-  // protected unsetButton() {
-  //   this.downgradeMDL( this.button );
-  //   this.button = null;
-  // }
+  protected setRoot(ref:Element){
+    this._root = ref;
+  }
+
   protected upgradeMDL( ref ) {
     if ( !ref ) { return }
+    console.info('upgrading MDL');
     componentHandler.upgradeElement( ref );
   }
 
   protected downgradeMDL( ref ) {
     if ( !ref ) { return }
+    console.info('downgrading MDL');
     componentHandler.downgradeElements( ref );
   }
   protected createClassNames( elem, baseClassName: string ) {

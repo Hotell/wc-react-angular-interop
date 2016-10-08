@@ -28,6 +28,7 @@ declare namespace SkateJs {
   interface ComponentInstance {
     new (): Component,
     extend( definition: CustomElementDefinition ),
+    updated?<E extends Component>( elem?: E, prevProps?: {[key: string]: any} ): boolean,
   }
 
   type DefineFn = ( name: string, definition: CustomElementDefinition )=>ComponentInstance
@@ -208,6 +209,7 @@ interface PropObjectType {
 declare interface Window {
   customElements: CustomElementRegistry,
   MaterialTooltip: MaterialDesignLite.MaterialTooltip
+  MaterialCheckbox: MaterialDesignLite.MaterialCheckbox
 }
 
 declare class CustomElementRegistry {
@@ -239,6 +241,7 @@ declare interface HTMLElementStatic {
 // 1.x
 declare module MaterialDesignLite {
   class MaterialTooltip {}
+  class MaterialCheckbox {}
 }
 
 
