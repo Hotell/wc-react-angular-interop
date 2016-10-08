@@ -27,7 +27,7 @@ module.exports = ( env ) => {
       ]
     },
 
-    devtool: 'cheap-module-source-map',
+    devtool: 'source-map',
 
     module: {
       loaders: [
@@ -36,7 +36,9 @@ module.exports = ( env ) => {
           test: /\.scss$/,
           // loaders: ['style', 'css', 'sass'],
           loaders: [
-            { loader: 'raw-loader' },
+            // 'raw-loader',
+            'to-string-loader',
+            'css-loader',
             {
               loader: 'sass-loader',
               query: {
@@ -44,7 +46,8 @@ module.exports = ( env ) => {
               }
             }
           ]
-        }
+        },
+        {test: /\.svg/, loader: 'svg-url-loader'}
       ],
 
     },
