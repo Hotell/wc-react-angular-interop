@@ -24,11 +24,11 @@ declare namespace SkateJs {
 
   type Ctor<T> = { new (...args: any[]): T };
 
-  class Component extends HTMLElement{}
-  interface ComponentInstance {
+  class Component extends HTMLElement {}
+  interface ComponentInstance extends CustomElementDefinition {
     new (): Component,
     extend( definition: CustomElementDefinition ),
-    updated?<E extends Component>( elem?: E, prevProps?: {[key: string]: any} ): boolean,
+    // updated?<E extends Component>( elem?: E, prevProps?: {[key: string]: any} ): boolean,
   }
 
   type DefineFn = ( name: string, definition: CustomElementDefinition )=>ComponentInstance
@@ -71,7 +71,7 @@ declare namespace SkateJs {
 
   /////
 
-  type CustomElementDefinition = {
+  interface CustomElementDefinition {
     /**
      * Custom properties that should be defined on the element. These are set up after the created lifecycle callback is called.
      *

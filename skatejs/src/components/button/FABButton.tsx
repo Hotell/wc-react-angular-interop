@@ -14,7 +14,7 @@ export class FABButton extends BaseButton {
     return Object.assign(
       {},
       BaseButton.props,
-      { mini: prop.boolean() }
+      { mini: prop.boolean( { attribute: true } ) }
     )
   }
 
@@ -26,8 +26,8 @@ export class FABButton extends BaseButton {
     return (
       <Button
         fab
-        fabMini={mini}
-        className={buttonClasses}
+        fab-mini={mini}
+        class={buttonClasses}
         {...otherProps}
       >
         <slot/>

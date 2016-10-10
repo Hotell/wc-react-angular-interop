@@ -26,9 +26,9 @@ export class Tooltip extends MDLComponent {
 
   static get props() {
     return {
-      label: prop.string(),
-      large: prop.boolean(),
-      position: prop.string(),
+      label: prop.string( { attribute: true } ),
+      large: prop.boolean( { attribute: true } ),
+      position: prop.string( { attribute: true } ),
     }
   }
 
@@ -59,7 +59,7 @@ export class Tooltip extends MDLComponent {
     // }
     return ([
       <style>{tooltipStyle}</style>,
-      <div>
+      <div style={{display: 'inline-block'}}>
         <span id={id}><slot /></span>
         <span
           ref={elem.setRoot}

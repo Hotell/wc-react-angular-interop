@@ -39,7 +39,6 @@ export class Checkbox extends MDLComponent {
           }
         }
       } ),
-      label: prop.string(),
       class: prop.string(),
       onChange: { default: () => {} },
       ripple: prop.boolean( { default: true } )
@@ -49,19 +48,18 @@ export class Checkbox extends MDLComponent {
   checked: boolean;
   class: string;
   disabled: boolean;
-  label: string;
   ripple: boolean;
 
-  static updated( elem: Checkbox, prevProps ) {
-
-    console.log( props(elem),prevProps );
-    return Component.updated( elem, prevProps );
-
-  }
+  // static updated( elem: Checkbox, prevProps ) {
+  //
+  //   console.log( props(elem),prevProps );
+  //   return Component.updated( elem, prevProps );
+  //
+  // }
 
   static render( elem: Checkbox){
 
-    const { checked, label, ripple } = props(elem);
+    const { disabled, checked, ripple } = props(elem);
     const checkboxClasses = `mdl-checkbox mdl-js-checkbox ${ripple
       ? 'mdl-js-ripple-effect'
       : ''}`;
@@ -73,9 +71,10 @@ export class Checkbox extends MDLComponent {
           type="checkbox"
           class="mdl-checkbox__input"
           checked={checked}
+          disabled={disabled}
         />
         <span class="mdl-checkbox__label">
-          {label ? label : <slot/>}
+          <slot/>
         </span>
         <span class={`${CssClasses.skipRoot}`} skip/>
       </label>

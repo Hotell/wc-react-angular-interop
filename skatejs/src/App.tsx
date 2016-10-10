@@ -82,17 +82,29 @@ export class App extends Component {
         }
       `}</style>,
       <section>
-        <paper-card hello="World">
-          <div slot="title">title Text Goes Here</div>
-          <div slot="supporting-text">
-            <p>Hello from Card!</p>
-            <x-counter count="1"></x-counter>
-          </div>
-          <div slot="card-actions">
-            <paper-button onClick={elem.toggleRaised.bind( elem )}>Toggle Raised</paper-button>
-            <paper-button raised={elem.isRaised}>
-              Click me!
-            </paper-button>
+
+        <fieldset>
+          <legend>Card</legend>
+          <paper-card hello="World">
+            <div slot="title">title Text Goes Here</div>
+            <div slot="supporting-text">
+              <p>Hello from Card!</p>
+              <x-counter count="1"></x-counter>
+            </div>
+            <div slot="card-actions">
+              <paper-button onClick={elem.toggleRaised.bind( elem )}>Toggle Raised</paper-button>
+              <paper-button raised={elem.isRaised}>
+                Click me!
+              </paper-button>
+              <iron-icon icon="mood"></iron-icon>
+              <a href="(URL or function)">Related Action</a>
+            </div>
+          </paper-card>
+        </fieldset>
+
+        <fieldset>
+          <legend>Button</legend>
+          <section>
             <paper-button href="http://google.com" raised>go Google it!</paper-button>
             <paper-button colored>Hello</paper-button>
             <paper-button primary raised>Hello</paper-button>
@@ -100,21 +112,22 @@ export class App extends Component {
             <paper-fab>Fab</paper-fab>
             <paper-fab mini>+</paper-fab>
             <paper-icon-button icon="mood" raised colored></paper-icon-button>
-            <iron-icon icon="mood"></iron-icon>
-            <a href="(URL or function)">Related Action</a>
-          </div>
-        </paper-card>
-
+          </section>
+        </fieldset>
         <fieldset>
           <legend>Tooltip</legend>
           <paper-tooltip label="Follow">
             <iron-icon icon="add"></iron-icon>
           </paper-tooltip>
+          <paper-tooltip label="Follow large" large>
+            <iron-icon icon="print"></iron-icon>
+        </paper-tooltip>
         </fieldset>
 
         <fieldset>
           <legend>Checkbox</legend>
-          <paper-checkbox checked label="hello"/>
+          <paper-checkbox checked>hello?</paper-checkbox>
+          <paper-checkbox disabled>Im disabled :(</paper-checkbox>
         </fieldset>
 
         <ButtonConfigurator elem={elem}/>

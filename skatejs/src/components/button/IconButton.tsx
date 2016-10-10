@@ -21,7 +21,7 @@ export class IconButton extends BaseButton implements IconButtonProps {
       {},
       // call super
       BaseButton.props,
-      { icon: prop.string() }
+      { icon: prop.string({attribute:true}) }
     )
   }
 
@@ -33,8 +33,8 @@ export class IconButton extends BaseButton implements IconButtonProps {
     return ([
       <style></style>,
       <Button
-        iconBtn
-        className={buttonClasses}
+        icon-btn
+        class={buttonClasses}
         {...otherProps}
       >
         <Icon icon={icon}/>

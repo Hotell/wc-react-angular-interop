@@ -50,15 +50,15 @@ export class BaseButton extends Component implements BaseButtonProps{
 
   static get props() {
     return {
-      raised: prop.boolean( { default: false } ),
-      ripple: prop.boolean( { default: true } ),
-      colored: prop.boolean(),
-      primary: prop.boolean(),
-      accent: prop.boolean(),
-      fab: prop.boolean(),
-      fabMini: prop.boolean(),
-      iconBtn: prop.boolean(),
-      href: prop.string(),
+      raised: prop.boolean( { attribute:true } ),
+      ripple: prop.boolean( { attribute: true, default: true } ),
+      colored: prop.boolean({attribute:true}),
+      primary: prop.boolean({attribute:true}),
+      accent: prop.boolean({attribute:true}),
+      fab: prop.boolean({attribute:true}),
+      fabMini: prop.boolean({attribute:true}),
+      iconBtn: prop.boolean({attribute:true}),
+      href: prop.string({attribute:true}),
       disabled: prop.boolean( { attribute: true } ),
       className: prop.string( {
         get( elem, data ){

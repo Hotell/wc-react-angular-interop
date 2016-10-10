@@ -1,6 +1,9 @@
 import './polyfills';
 import './vendor';
 
-// import './App';
-import './AppMDL';
+// this includes MDL 1.x integration
+import './App';
+
+// this includes MDL 2.x integration
+// import './AppMDL';
 

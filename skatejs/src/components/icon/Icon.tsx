@@ -12,7 +12,7 @@ export class Icon extends Component {
 
   static get props() {
     return {
-      icon: prop.string()
+      icon: prop.string( { attribute: true } )
     }
   }
 
