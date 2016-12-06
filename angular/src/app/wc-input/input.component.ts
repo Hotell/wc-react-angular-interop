@@ -78,13 +78,20 @@ export class Input extends HTMLElement {
   private fire(evtName: string, payload = null) {
     this.dispatchEvent(new CustomEvent(evtName, {detail: payload}));
   }
-  private render(){
-    this.bindings.input.value = this.value;
-    this.bindings.errors.textContent = this.errorMsg;
+
+  private render() {
+    console.info('REDNER',this.bindings.input.value,this.bindings.errors)
+    if ( this.bindings.input.value !== this.value ) {
+      this.bindings.input.value = this.value;
+    }
+    if ( this.bindings.errors.textContent !== this.errorMsg ) {
+      this.bindings.errors.textContent = this.errorMsg;
+    }
   }
   private registerListeners(){
     this.bindings.input.addEventListener('input', (evt:KeyboardEvent) => {
-      const value = (evt.target as HTMLInputElement).value
+      const value = (evt.target as HTMLInputElement).value;
+      this.value = value;
       this.fire(Input.events.change,{value});
     });
     this.bindings.input.addEventListener('focus',(evt) => {

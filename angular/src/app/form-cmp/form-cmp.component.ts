@@ -1,5 +1,5 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, AbstractControl } from '@angular/forms';
 import {NG_VALUE_ACCESSOR, ControlValueAccessor, FormsModule} from '@angular/forms';
 import { Input as WcInput } from '../wc-input/input.component';
 
@@ -36,20 +36,32 @@ export const MD_INPUT_CONTROL_VALUE_ACCESSOR: any = {
           required
           name="second"
           [value]="secondValue"
-          (change)="handleChange($event)"
-          [errorMsg]="'Oh no panic!'"
+          (change)="handleChangeSecond($event,myForm)"
+          [errorMsg]="erroMsgSecond"
         ></wc-input>
         <i>{{ secondValue }}</i>
       </div>
       
       <div>
         <p>Im registered to ngForm via wrapper</p>
-        <label>Say my value:</label>
+        <label>Say my name:</label>
         <wc-input-wrapper
+          required
+          name="secondViaWrapper"
+          [(ngModel)]="secondValueViaWrapper"        
+        ></wc-input-wrapper>
+        <i>{{ secondValueViaWrapper }}</i>
+      </div>
+      <div>
+        <p>Im registered to ngForm via ControlValueAccessor override</p>
+        <label>Say my value:</label>
+        <wc-input
           minlength="5"
-          [ngModel]="thirdValue" 
           name="third"
-        ></wc-input-wrapper>       
+          [ngModel]="thirdValue"
+          (ngModelChange)="handleThirdChange($event,myForm)"
+          [errorMsg]="erroMsgThird"
+        ></wc-input>       
         <i>{{ thirdValue }}</i>
       </div>
     
@@ -62,16 +74,25 @@ export class FormCmpComponent implements OnInit {
   myForm: FormGroup;
   firstValue = 'Hello'
   secondValue = 'World'
+  secondValueViaWrapper = 'OH NO'
   thirdValue = 'WOT'
+  private erroMsgSecond = '';
+  private erroMsgThird = '';
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  handleChange( event ) {
-    this.secondValue = event.detail.value
-    this.thirdValue = event.detail.value
+  handleChangeSecond( event, form: FormGroup ) {
+    this.secondValue = event.detail.value;
+    // this wont do anything because custom element is not registered :)
+    // this.erroMsgSecond = ((form.controls as any).second as FormControl).errors ? 'Oh no panic!' : ''
+  }
+  handleThirdChange(event:string, form: FormGroup){
+    console.log( event, form );
+    this.thirdValue = event;
+    this.erroMsgThird = ((form.controls as any).third as FormControl).errors ? 'Oh no panic!' : ''
   }
 
   handleSubmit( form: FormGroup ) {
