@@ -37,7 +37,9 @@ export class Input extends HTMLElement {
   }
   static get events(){
     return {
-      change:'change'
+      change:'change',
+      focus: 'focus',
+      blur: 'blur',
     }
   }
   private bindings: {
@@ -73,7 +75,7 @@ export class Input extends HTMLElement {
   connectedCallback(){
     this.render();
   }
-  private fire(evtName: string, payload: any) {
+  private fire(evtName: string, payload = null) {
     this.dispatchEvent(new CustomEvent(evtName, {detail: payload}));
   }
   private render(){
@@ -85,6 +87,12 @@ export class Input extends HTMLElement {
       const value = (evt.target as HTMLInputElement).value
       this.fire(Input.events.change,{value});
     });
+    this.bindings.input.addEventListener('focus',(evt) => {
+      this.fire(Input.events.focus)
+    })
+    this.bindings.input.addEventListener('blur',(evt) => {
+      this.fire(Input.events.blur)
+    })
   }
 }
 

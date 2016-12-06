@@ -8,12 +8,14 @@ import './wc-input/input.component';
 import { AppComponent } from './app.component';
 import { FormCmpComponent } from './form-cmp/form-cmp.component';
 import { FormRCmpComponent } from './form-r-cmp/form-r-cmp.component';
+import { WcInputWrapperComponent } from './wc-input-wrapper/wc-input-wrapper.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormCmpComponent,
     FormRCmpComponent,
+    WcInputWrapperComponent
   ],
   imports: [
     BrowserModule,
