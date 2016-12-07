@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "name": "wc-with-preact-interop",
+  "scripts": {
+    "start": "webpack-dev-server --env.dev",
+    "devel": "webpack --watch & pushstate-server dist/"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "3.0.0-beta.9",
+    "css-loader": "^0.26.1",
+    "html-webpack-plugin": "^2.24.1",
+    "pushstate-server": "^2.1.0",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.13.1",
+    "ts-loader": "^1.3.0",
+    "typescript": "2.2.0-dev.20161207",
+    "webpack": "2.1.0-beta.27",
+    "webpack-dev-server": "2.1.0-beta.12"
+  },
+  "dependencies": {
+    "@webcomponents/custom-elements": "github:webcomponents/custom-elements",
+    "@webcomponents/shadycss": "github:webcomponents/shadycss",
+    "@webcomponents/shadydom": "github:webcomponents/shadydom",
+    "blaze": "^3.2.0",
+    "preact": "^7.1.0"
+  }
+}

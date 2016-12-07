@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "module": "es2015",
+    "target": "es5",
+    "sourceMap": true,
+    "jsx": "react",
+    "jsxFactory": "h",
+    "outDir": "ts-output",
+    "moduleResolution": "node",
+    "lib":[
+      "dom",
+      "es5",
+      "es2015.core",
+      "es2015.promise"
+    ]
+    // "typeRoots": [
+    //   "node_modules/@types",
+    //   "src/app/web-components/jsx"
+    // ]
+    // "types": [
+    //   "jsx",
+    //   "preact"
+    // ]
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
