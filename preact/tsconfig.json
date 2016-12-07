@@ -16,14 +16,6 @@
       "es2015.core",
       "es2015.promise"
     ]
-    // "typeRoots": [
-    //   "node_modules/@types",
-    //   "src/app/web-components/jsx"
-    // ]
-    // "types": [
-    //   "jsx",
-    //   "preact"
-    // ]
   },
   "exclude": [
     "node_modules"

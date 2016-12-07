@@ -36,10 +36,10 @@ interface Document {
 
 interface HTMLElement extends OnConnectedCallback, OnDisconnectedCallback, OnAdoptedCallback, OnAttributeChangedCallback {
 //   // shadow DOM API
-//   shadowRoot: HTMLElement,
-//   attachShadow( { mode:string } ): HTMLElement,
-//   assignedNodes( { flatten }?:{flatten?: boolean} ): NodeList,
-//   assignedSlot: string|void,
+  // shadowRoot: HTMLElement,
+  // attachShadow( { mode: string } ): HTMLElement,
+  // assignedNodes( { flatten }?:{flatten?: boolean} ): NodeList,
+  // assignedSlot: string|void,
 }
 
 interface HasAttributes {
@@ -171,13 +171,13 @@ interface Document {
   createElement(name: string, options: ElementCreationOptions): HTMLElement;
 }
 
-interface HTMLElement extends OnConnectedCallback, OnDisconnectedCallback, OnAdoptedCallback, OnAttributeChangedCallback {
+// interface HTMLElement extends OnConnectedCallback, OnDisconnectedCallback, OnAdoptedCallback, OnAttributeChangedCallback {
 //   // shadow DOM API
 //   shadowRoot: HTMLElement,
 //   attachShadow( { mode:string } ): HTMLElement,
 //   assignedNodes( { flatten }?:{flatten?: boolean} ): NodeList,
 //   assignedSlot: string|void,
-}
+// }
 
 interface HasAttributes {
   readonly observedAttributes: string[]|void;
@@ -262,10 +262,4 @@ interface HTMLElementTagNameMap {
 
 declare class BlButton extends HTMLElement {
   readonly foo: string
-}
-
-declare namespace JSX {
-  interface IntrinsicElements {
-    'wc-input': any
-  }
 }

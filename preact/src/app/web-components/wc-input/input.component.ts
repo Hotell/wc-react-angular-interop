@@ -38,14 +38,13 @@ export class Input extends HTMLElement {
   }
 
 
-  bindings: {input:HTMLInputElement,errors:HTMLDivElement} = {
+  private bindings: {input:HTMLInputElement,errors:HTMLDivElement} = {
     input: null,
     errors: null,
   };
 
-  _required = false;
+  private _required = false;
   get required() { return this._required }
-  //
   set required( val ) {
     this._required = Boolean(val);
     const isRequired = this.hasAttribute( 'required' );
@@ -57,16 +56,14 @@ export class Input extends HTMLElement {
     }
   }
 
-
-
-  _name = '';
+  private _name = '';
   get name() { return this._name }
 
   set name( val ) {
     this._name = val
   }
 
-  _value = '';
+  private _value = '';
   get value() { return this._value }
 
   set value( val ) {
@@ -74,7 +71,7 @@ export class Input extends HTMLElement {
     this.render();
   }
 
-  _errorMsg = '';
+  private _errorMsg = '';
   get errorMsg() { return this._errorMsg }
 
   set errorMsg( val ) {
@@ -82,9 +79,8 @@ export class Input extends HTMLElement {
     this.render();
   }
 
-  _placeholder = '';
+  private _placeholder = '';
   get placeholder() { return this._placeholder }
-
   set placeholder( val ) {
     this._placeholder = val;
     this.render();
@@ -130,11 +126,11 @@ export class Input extends HTMLElement {
     }
   }
 
-  fire( evtName: string, payload: Object = null ) {
+  private fire( evtName: string, payload: Object = null ) {
     this.dispatchEvent( new CustomEvent( evtName, { detail: payload } ) );
   }
 
-  render() {
+  private render() {
     const { input, errors }  = this.bindings;
     console.info( 'RENDER!', { value: input.value, errors } );
 
@@ -153,7 +149,7 @@ export class Input extends HTMLElement {
 
   }
 
-  registerListeners() {
+  private registerListeners() {
     this.bindings.input.addEventListener( 'input', ( evt: KeyboardEvent ) => {
       const value = (evt.target as HTMLInputElement).value;
       this.value = value;

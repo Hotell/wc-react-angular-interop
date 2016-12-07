@@ -83,11 +83,11 @@ export default class Form extends Component<Props,State> {
               name="nickname"
               id="nickname"
               placeholder="your nickanem pls"
-              error-msg={errors.nickname}
               required
+              errorMsg={errors.nickname}
               value={form.nickname}
               onChange={this.handleChange}
-            />
+            ></wc-input>
           </div>
         </fieldset>
         <button className="c-button">Submit</button>
