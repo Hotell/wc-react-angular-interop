@@ -7,6 +7,9 @@
     "jsxFactory": "h",
     "outDir": "ts-output",
     "moduleResolution": "node",
+    "noEmitHelpers": true,
+    "importHelpers": true,
+    "noImplicitAny": true,
     "lib":[
       "dom",
       "es5",

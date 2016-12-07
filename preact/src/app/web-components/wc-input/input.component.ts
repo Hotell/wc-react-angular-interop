@@ -1,4 +1,5 @@
 import style from './input.component.css';
+import hintStyle from './hint.css';
 
 export class Input extends HTMLElement {
   static get is() { return 'wc-input'}
@@ -7,10 +8,11 @@ export class Input extends HTMLElement {
     return `
       .error-msg{}
       ${style}
+      ${hintStyle}
     `
   }
 
-  static template( css ) {
+  static template( css: string ) {
     return (`
       <style>${css}</style>
       <input type="text" class="c-field">
@@ -36,7 +38,7 @@ export class Input extends HTMLElement {
   }
 
 
-  bindings = {
+  bindings: {input:HTMLInputElement,errors:HTMLDivElement} = {
     input: null,
     errors: null,
   };
@@ -94,7 +96,7 @@ export class Input extends HTMLElement {
     this.shadowRoot.innerHTML = Input.template( Input.style );
     this.bindings = {
       input: this.shadowRoot.querySelector( 'input' ),
-      errors: this.shadowRoot.querySelector( '.error-msg' ),
+      errors: this.shadowRoot.querySelector( '.error-msg' ) as HTMLDivElement,
     }
 
     this.registerListeners();
@@ -104,7 +106,7 @@ export class Input extends HTMLElement {
     this.render();
   }
 
-  attributeChangedCallback( attrName, oldValue, newValue ) {
+  attributeChangedCallback( attrName: string, oldValue: any, newValue: any ) {
     console.log( { attrName, oldValue, newValue } );
     switch ( attrName ) {
       case 'name':
@@ -128,7 +130,7 @@ export class Input extends HTMLElement {
     }
   }
 
-  fire( evtName, payload = null ) {
+  fire( evtName: string, payload: Object = null ) {
     this.dispatchEvent( new CustomEvent( evtName, { detail: payload } ) );
   }
 
@@ -152,8 +154,8 @@ export class Input extends HTMLElement {
   }
 
   registerListeners() {
-    this.bindings.input.addEventListener( 'input', ( evt ) => {
-      const value = evt.target.value;
+    this.bindings.input.addEventListener( 'input', ( evt: KeyboardEvent ) => {
+      const value = (evt.target as HTMLInputElement).value;
       this.value = value;
       this.fire( Input.events.change, { value } );
     } );

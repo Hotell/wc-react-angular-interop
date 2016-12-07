@@ -126,7 +126,7 @@ interface Document {
 declare var ShadyCSS: ShadyCSSStatic;
 interface ShadyCSSStatic {
   prepareTemplate( template: HTMLTemplateElement, name: string ): void,
-  applyStyle(instance:HTMLElement),
+  applyStyle(instance:HTMLElement): void,
 }
 
 

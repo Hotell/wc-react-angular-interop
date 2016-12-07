@@ -1,14 +1,13 @@
 import { Component, h } from 'preact';
 
+type FormKeys = {
+  nickname: string,
+  houseno: string,
+}
 interface Props{}
 interface State{
-  form?:{
-    houseno: string,
-    nickname: string
-  },
-  errors?: {
-    [fieldName:string]:any
-  },
+  form?:Partial<FormKeys>,
+  errors?:Partial<FormKeys>,
 }
 export default class Form extends Component<Props,State> {
   state = {
@@ -16,16 +15,19 @@ export default class Form extends Component<Props,State> {
       houseno: '',
       nickname: '',
     },
-    errors: {}
+    errors: {
+      houseno: '',
+      nickname: '',
+    }
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = (event: Event) => {
     const {form} = this.state;
     event.preventDefault();
     console.log( form );
   };
-  handleChange = ( event ) => {
-    const { value, name, required } = event.target;
+  handleChange = ( event: Event ) => {
+    const { value, name, required } = event.target as HTMLInputElement;
     const { form, errors } = this.state;
     console.log( { value, name } );
     if ( !(name in form) ) {
@@ -33,11 +35,11 @@ export default class Form extends Component<Props,State> {
     }
     const newFormValue = Object.assign( {}, form, { [name]: value } );
     this.setState( { form: newFormValue }, () => {
-      this.validate( name, Boolean( required ) )
+      this.validate( name as keyof FormKeys, Boolean( required ) )
     } )
   };
 
-  validate( fieldName: string, required: boolean ) {
+  validate( fieldName: keyof FormKeys, required: boolean ) {
     const { form, errors } = this.state;
     const field = form[ fieldName ];
 
@@ -48,7 +50,8 @@ export default class Form extends Component<Props,State> {
     this.setState( { errors: newErrorsState } )
 
   }
-  render(props,state){
+
+  render( props: Props, state: State ) {
     const {form,errors} = state;
     return (
        <form noValidate onSubmit={this.handleSubmit}>
