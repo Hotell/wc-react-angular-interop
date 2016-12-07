@@ -1,4 +1,22 @@
 import { importTemplate } from '../wc-utils';
+const template = `
+<template id="flag-icon">
+  <style>
+    :host{
+      display:block;
+      background-color: tomato;
+      padding: 1rem;
+    }
+    button{
+      padding: 1.5rem;
+    }
+  </style>
+  <i>Icon</i>
+  <slot></slot>
+  <div id="renderer"></div>
+  <button type="button" id="clicker">click me to trigger custom event</button>
+</template>
+`;
 
 export class FlagIcon extends HTMLElement {
 
@@ -8,6 +26,7 @@ export class FlagIcon extends HTMLElement {
   _renderer = null;
   _eventListeners = [];
 
+  static get is() {return 'flag-icon'}
   static EVENTS = {
     iconClicked: 'icon-clicked'
   };
@@ -16,7 +35,7 @@ export class FlagIcon extends HTMLElement {
     super();
 
     // Create shadow DOM for the component.
-    const template = importTemplate( require( './flag-icon.html' ) );
+    const template = importTemplate( template );
     const shadowRoot = this.attachShadow( { mode: 'open' } );
     shadowRoot.appendChild( template );
 
@@ -59,10 +78,12 @@ export class FlagIcon extends HTMLElement {
   }
 
   connectedCallback() {
+    console.info('Attached!')
     this._updateRendering();
   }
 
   disconnectedCallback() {
+    console.info('Detached!')
     this._renderer = null;
     this._eventListeners.forEach( unmountEvent => this.shadowRoot.removeEventListener( 'click', unmountEvent ) );
     console.log( 'bye!' );

@@ -12,5 +12,5 @@ function applyShadowDOMCss(elementTemplate, elementName) {
     console.info('applying ShadyCSS!');
     window.ShadyCSS.prepareTemplate(elementTemplate, elementName || elementTemplate.id);
   }
-  
+
 }

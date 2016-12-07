@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.4.3"
+    "react-scripts": "0.8.1"
   },
   "dependencies": {
     "@webcomponents/custom-elements": "github:webcomponents/custom-elements",
     "@webcomponents/shadycss": "github:webcomponents/shadycss",
     "@webcomponents/shadydom": "github:webcomponents/shadydom",
-    "react": "15.3.2",
-    "react-dom": "15.3.2"
+    "blaze": "^3.2.0",
+    "react": "15.4.1",
+    "react-dom": "15.4.1"
   },
   "scripts": {
     "start": "react-scripts start",

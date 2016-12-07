@@ -5,3 +5,5 @@ export function registerWC(){
   registerFancyTabs();
   registerFlagIcon();
 }
+
+import './wc-input/input.component';
