@@ -1,0 +1,33 @@
+{
+  "name": "vue-wc-interop",
+  "description": "A Vue.js project",
+  "version": "1.0.0",
+  "author": "Martin Hochel <hochelmartin@gmail.com>",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
+    "build": "cross-env NODE_ENV=production webpack --progress --hide-modules"
+  },
+  "dependencies": {
+    "@webcomponents/custom-elements": "github:webcomponents/custom-elements",
+    "@webcomponents/shadycss": "github:webcomponents/shadycss",
+    "@webcomponents/shadydom": "github:webcomponents/shadydom",
+    "vue": "^2.1.0"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^3.0.0-beta.10",
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-es2015": "^6.0.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "raw-loader": "^0.5.1",
+    "ts-loader": "^1.3.1",
+    "typescript": "^2.1.4",
+    "vue-loader": "^10.0.0",
+    "vue-template-compiler": "^2.1.0",
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-server": "^2.1.0-beta.0"
+  }
+}
